@@ -433,20 +433,26 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-            .hero .container { grid-template-columns: 1fr; gap: 40px; }
+            .hero .container { grid-template-columns: 1fr; gap: 24px; }
             .hero-content { padding-inline-end: 0; text-align: center; }
             .hero-subtitle { margin: 0 auto 40px; }
             .hero-actions { justify-content: center; }
-            .hero-visual { height: 400px; display: flex; justify-content: center; }
-            .hero-img-main { position: relative; top: auto; right: auto; left: auto; width: 100%; max-width: 400px; height: 400px; }
+            .hero-visual { height: 360px; display: flex; justify-content: center; }
+            .hero-img-main { position: relative; top: auto; right: auto; left: auto; width: 100%; max-width: 380px; height: 360px; }
             .hero-img-secondary, .hero-img-accent, .hero-stat { display: none; }
+            .categories { padding: 60px 0 40px; }
             .categories-grid { grid-template-columns: repeat(2,1fr); }
+            .products { padding: 40px 0 60px; }
             .order-wrapper { grid-template-columns: 1fr; }
             .about .container { grid-template-columns: 1fr; gap: 40px; }
             .about-image { height: 320px; }
+            .about { padding: 60px 0; }
             .footer-top { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
+            .hero { min-height: auto; padding-top: 100px; padding-bottom: 40px; }
+            .hero-visual { height: 280px; }
+            .hero-img-main { max-width: 300px; height: 280px; }
             .nav-links {
                 display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
                 background: rgba(6,6,8,0.98); flex-direction: column; align-items: center;
@@ -455,13 +461,22 @@
             .nav-links.active { display: flex; }
             .nav-links a { font-size: 1.2rem; }
             .menu-toggle { display: flex; z-index: 1001; }
-            .trust-bar .container { grid-template-columns: repeat(2,1fr); gap: 20px; }
-            .categories-grid { grid-template-columns: 1fr; }
-            .category-card { height: 200px; }
+            .trust-bar { padding: 36px 0; }
+            .trust-bar .container { grid-template-columns: repeat(2,1fr); gap: 16px; }
+            .trust-item { padding: 16px 8px; }
+            .categories { padding: 48px 0 32px; }
+            .categories-grid { grid-template-columns: 1fr; gap: 14px; }
+            .category-card { height: 180px; }
+            .products { padding: 32px 0 60px; }
+            .products-header { margin-bottom: 32px; }
             .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 16px; }
             .form-row { grid-template-columns: 1fr; }
             .hero-actions { flex-direction: column; }
-            .hero-badge { margin: 0 auto 32px; }
+            .hero-badge { margin: 0 auto 24px; }
+            .hero-title { margin-bottom: 16px; }
+            .hero-subtitle { margin-bottom: 28px; }
+            .order-section { padding: 60px 0; }
+            .about { padding: 48px 0; }
             .footer-top { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
             .order-form-card { padding: 28px 20px; }
@@ -469,8 +484,15 @@
             .lang-switcher { order: -1; }
         }
         @media (max-width: 480px) {
+            .hero { padding-top: 90px; padding-bottom: 32px; }
+            .hero-visual { height: 240px; }
+            .hero-img-main { max-width: 260px; height: 240px; }
+            .categories { padding: 40px 0 24px; }
+            .category-card { height: 160px; }
+            .products { padding: 24px 0 48px; }
             .products-grid { grid-template-columns: 1fr; }
             .product-img-wrap { height: 260px; }
+            .trust-bar .container { grid-template-columns: 1fr 1fr; gap: 12px; }
         }
     </style>
 </head>
@@ -520,7 +542,7 @@
                 </h1>
                 <p class="hero-subtitle" data-i18n="hero_subtitle">Des appliques murales au design unique pour transformer chaque mur en une oeuvre d'art lumineuse. Livraison partout en Algerie.</p>
                 <div class="hero-actions">
-                    <a href="#produits" class="btn-primary">
+                    <a href="#collection" class="btn-primary">
                         <span data-i18n="hero_cta">Voir la collection</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </a>
