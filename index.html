@@ -989,39 +989,54 @@
             ]
         };
 
-        // ── Product Data ──
-        const products = [
-            { id:1, cat:"classique", spec:"int", price:"4 500 DA", img:"Products/660512119_964583239865226_8198389326246780176_n.jpg" },
-            { id:2, cat:"classique", spec:"int", price:"4 200 DA", img:"Products/661454881_964582986531918_5483709476643133918_n.jpg" },
-            { id:3, cat:"classique", spec:"int", price:"4 500 DA", img:"Products/661710772_964583469865203_6823182422207281289_n.jpg" },
-            { id:4, cat:"classique", spec:"int", price:"5 000 DA", img:"Products/661715173_964583323198551_6902706529067766289_n.jpg" },
-            { id:5, cat:"classique", spec:"int", price:"3 800 DA", img:"Products/661861904_964582506531966_2113192358026335988_n.jpg" },
-            { id:6, cat:"artistique", spec:"int", price:"5 500 DA", img:"Products/662009863_964581446532072_569192811422730417_n.jpg" },
-            { id:7, cat:"artistique", spec:"int", price:"6 000 DA", img:"Products/662135107_964581366532080_4597379214441569486_n.jpg", badge:"bestseller" },
-            { id:8, cat:"decorative", spec:"int", price:"5 800 DA", img:"Products/662188343_964582196531997_3727780789698678371_n.jpg" },
-            { id:9, cat:"led", spec:"both", price:"4 800 DA", img:"Products/662189938_964582956531921_6168745706088512068_n.jpg" },
-            { id:10, cat:"led", spec:"int", price:"4 200 DA", img:"Products/662235734_964582336531983_6618653074204394511_n.jpg" },
-            { id:11, cat:"classique", spec:"int", price:"4 000 DA", img:"Products/662355147_964583289865221_8593786777519565021_n.jpg" },
-            { id:12, cat:"decorative", spec:"int", price:"6 500 DA", img:"Products/662375647_964581536532063_4214740935727736516_n.jpg", badge:"premium" },
-            { id:13, cat:"classique", spec:"int", price:"3 500 DA", img:"Products/662877554_964582669865283_8855418817131032716_n.jpg" },
-            { id:14, cat:"led", spec:"int", price:"3 800 DA", img:"Products/662933092_964583036531913_5430809172069410371_n.jpg" },
-            { id:15, cat:"led", spec:"int", price:"4 000 DA", img:"Products/663072230_964583076531909_5454792028482091568_n.jpg" },
-            { id:16, cat:"led", spec:"both", price:"3 600 DA", img:"Products/663242075_964583206531896_7729218085022407988_n.jpg" },
-            { id:17, cat:"artistique", spec:"int", price:"5 500 DA", img:"Products/663284683_964581506532066_7208053677261643621_n.jpg" },
-            { id:18, cat:"decorative", spec:"int", price:"5 200 DA", img:"Products/663322400_964583399865210_259164777113537625_n.jpg" },
-            { id:19, cat:"led", spec:"both", price:"4 500 DA", img:"Products/663373100_964582706531946_6564342833732177354_n.jpg" },
-            { id:20, cat:"classique", spec:"int", price:"Sur demande", img:"Products/665839134_964580653198818_329008676099722200_n.jpg" },
-            { id:21, cat:"led", spec:"int", price:"4 800 DA", img:"Products/666111635_964581426532074_2743584886324193133_n.jpg" },
-            { id:22, cat:"artistique", spec:"int", price:"4 200 DA", img:"Products/666183535_964582429865307_3599050698505953145_n.jpg" },
-            { id:23, cat:"classique", spec:"int", price:"4 500 DA", img:"Products/666489794_964573399866210_8420417276701669506_n.jpg" },
-            { id:24, cat:"led", spec:"int", price:"5 200 DA", img:"Products/666526631_964580673198816_6688133335723400980_n.jpg", badge:"new" },
-            { id:25, cat:"decorative", spec:"int", price:"6 200 DA", img:"Products/666624621_964581953198688_5833031665386046773_n.jpg", badge:"premium" },
-            { id:26, cat:"led", spec:"both", price:"5 000 DA", img:"Products/666677715_964574586532758_2147664094945029877_n.jpg" },
-            { id:27, cat:"decorative", spec:"int", price:"3 800 DA", img:"Products/666834022_964582249865325_345763148090551886_n.jpg" },
-            { id:28, cat:"led", spec:"int", price:"4 800 DA", img:"Products/666984601_964573919866158_5786421101155669582_n.jpg" },
-            { id:29, cat:"led", spec:"ext", price:"5 500 DA", img:"Products/667730572_964574116532805_2471196322789748512_n.jpg" },
-            { id:30, cat:"decorative", spec:"int", price:"7 500 DA", img:"Products/668121146_964573326532884_1466832074354701932_n.jpg", badge:"new" }
-        ];
+        // ── Product Data (localStorage from admin OR hardcoded defaults) ──
+        var useAdmin = false;
+        var products = [];
+        (function loadProducts() {
+            var stored = localStorage.getItem('asy_products');
+            if (stored) {
+                try {
+                    var parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        products = parsed;
+                        useAdmin = true;
+                        return;
+                    }
+                } catch(e) {}
+            }
+            products = [
+                { id:1, cat:"classique", spec:"int", price:"4 500 DA", img:"Products/660512119_964583239865226_8198389326246780176_n.jpg" },
+                { id:2, cat:"classique", spec:"int", price:"4 200 DA", img:"Products/661454881_964582986531918_5483709476643133918_n.jpg" },
+                { id:3, cat:"classique", spec:"int", price:"4 500 DA", img:"Products/661710772_964583469865203_6823182422207281289_n.jpg" },
+                { id:4, cat:"classique", spec:"int", price:"5 000 DA", img:"Products/661715173_964583323198551_6902706529067766289_n.jpg" },
+                { id:5, cat:"classique", spec:"int", price:"3 800 DA", img:"Products/661861904_964582506531966_2113192358026335988_n.jpg" },
+                { id:6, cat:"artistique", spec:"int", price:"5 500 DA", img:"Products/662009863_964581446532072_569192811422730417_n.jpg" },
+                { id:7, cat:"artistique", spec:"int", price:"6 000 DA", img:"Products/662135107_964581366532080_4597379214441569486_n.jpg", badge:"bestseller" },
+                { id:8, cat:"decorative", spec:"int", price:"5 800 DA", img:"Products/662188343_964582196531997_3727780789698678371_n.jpg" },
+                { id:9, cat:"led", spec:"both", price:"4 800 DA", img:"Products/662189938_964582956531921_6168745706088512068_n.jpg" },
+                { id:10, cat:"led", spec:"int", price:"4 200 DA", img:"Products/662235734_964582336531983_6618653074204394511_n.jpg" },
+                { id:11, cat:"classique", spec:"int", price:"4 000 DA", img:"Products/662355147_964583289865221_8593786777519565021_n.jpg" },
+                { id:12, cat:"decorative", spec:"int", price:"6 500 DA", img:"Products/662375647_964581536532063_4214740935727736516_n.jpg", badge:"premium" },
+                { id:13, cat:"classique", spec:"int", price:"3 500 DA", img:"Products/662877554_964582669865283_8855418817131032716_n.jpg" },
+                { id:14, cat:"led", spec:"int", price:"3 800 DA", img:"Products/662933092_964583036531913_5430809172069410371_n.jpg" },
+                { id:15, cat:"led", spec:"int", price:"4 000 DA", img:"Products/663072230_964583076531909_5454792028482091568_n.jpg" },
+                { id:16, cat:"led", spec:"both", price:"3 600 DA", img:"Products/663242075_964583206531896_7729218085022407988_n.jpg" },
+                { id:17, cat:"artistique", spec:"int", price:"5 500 DA", img:"Products/663284683_964581506532066_7208053677261643621_n.jpg" },
+                { id:18, cat:"decorative", spec:"int", price:"5 200 DA", img:"Products/663322400_964583399865210_259164777113537625_n.jpg" },
+                { id:19, cat:"led", spec:"both", price:"4 500 DA", img:"Products/663373100_964582706531946_6564342833732177354_n.jpg" },
+                { id:20, cat:"classique", spec:"int", price:"Sur demande", img:"Products/665839134_964580653198818_329008676099722200_n.jpg" },
+                { id:21, cat:"led", spec:"int", price:"4 800 DA", img:"Products/666111635_964581426532074_2743584886324193133_n.jpg" },
+                { id:22, cat:"artistique", spec:"int", price:"4 200 DA", img:"Products/666183535_964582429865307_3599050698505953145_n.jpg" },
+                { id:23, cat:"classique", spec:"int", price:"4 500 DA", img:"Products/666489794_964573399866210_8420417276701669506_n.jpg" },
+                { id:24, cat:"led", spec:"int", price:"5 200 DA", img:"Products/666526631_964580673198816_6688133335723400980_n.jpg", badge:"new" },
+                { id:25, cat:"decorative", spec:"int", price:"6 200 DA", img:"Products/666624621_964581953198688_5833031665386046773_n.jpg", badge:"premium" },
+                { id:26, cat:"led", spec:"both", price:"5 000 DA", img:"Products/666677715_964574586532758_2147664094945029877_n.jpg" },
+                { id:27, cat:"decorative", spec:"int", price:"3 800 DA", img:"Products/666834022_964582249865325_345763148090551886_n.jpg" },
+                { id:28, cat:"led", spec:"int", price:"4 800 DA", img:"Products/666984601_964573919866158_5786421101155669582_n.jpg" },
+                { id:29, cat:"led", spec:"ext", price:"5 500 DA", img:"Products/667730572_964574116532805_2471196322789748512_n.jpg" },
+                { id:30, cat:"decorative", spec:"int", price:"7 500 DA", img:"Products/668121146_964573326532884_1466832074354701932_n.jpg", badge:"new" }
+            ];
+        })();
 
         let currentLang = localStorage.getItem('asy_lang') || 'fr';
 
@@ -1091,8 +1106,18 @@
             populateProductSelect();
         }
 
-        function getProductName(index) {
-            return productNames[currentLang][index];
+        function getProductName(product) {
+            // Admin products have nameFr/nameAr/nameEn directly
+            if (product.nameFr) {
+                var nameMap = { fr: product.nameFr, ar: product.nameAr || product.nameFr, en: product.nameEn || product.nameFr };
+                return nameMap[currentLang] || product.nameFr;
+            }
+            // Default products use the index-based array
+            return productNames[currentLang][product.id - 1] || '';
+        }
+
+        function getProductImg(product) {
+            return product.imgData || product.img || '';
         }
 
         function getBadgeText(badge) {
@@ -1127,14 +1152,14 @@
             const filtered = filter === 'all' ? products : products.filter(p => p.cat === filter);
             grid.innerHTML = '';
             filtered.forEach((p, i) => {
-                const name = getProductName(p.id - 1);
+                const name = getProductName(p);
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.style.animationDelay = (i * 0.05) + 's';
                 card.innerHTML =
                     '<div class="product-img-wrap">' +
                         (p.badge ? '<div class="product-badge">' + getBadgeText(p.badge) + '</div>' : '') +
-                        '<img src="' + p.img + '" alt="' + name + '" loading="lazy">' +
+                        '<img src="' + getProductImg(p) + '" alt="' + name + '" loading="lazy">' +
                     '</div>' +
                     '<div class="product-info">' +
                         '<h3 class="product-name">' + name + '</h3>' +
@@ -1172,7 +1197,7 @@
             produitSelect.appendChild(placeholder);
 
             products.forEach(function(p) {
-                var name = getProductName(p.id - 1);
+                var name = getProductName(p);
                 var opt = document.createElement('option');
                 opt.value = name + ' (' + p.price + ')';
                 opt.textContent = name + ' - ' + p.price;
@@ -1205,8 +1230,8 @@
 
         // ── Modal ──
         function openModal(product) {
-            var name = getProductName(product.id - 1);
-            document.getElementById('modalImg').src = product.img;
+            var name = getProductName(product);
+            document.getElementById('modalImg').src = getProductImg(product);
             document.getElementById('modalImg').alt = name;
             document.getElementById('modalName').textContent = name;
             document.getElementById('modalPrice').textContent = product.price;
