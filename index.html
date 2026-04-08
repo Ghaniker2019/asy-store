@@ -16,8 +16,9 @@
             --gold: #b8902d;
             --gold-light: #d4a853;
             --gold-dark: #8a6b1e;
-            --blue: #3d8fb5;
-            --blue-light: #4BA8D4;
+            --blue: #43A2E2;
+            --blue-light: #5eb5f0;
+            --blue-dark: #2d7bba;
             --text-primary: #1a1714;
             --text-secondary: #5c564e;
             --text-muted: #9a9490;
@@ -56,9 +57,9 @@
             letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
             margin-bottom: 12px; display: flex; align-items: center; gap: 12px;
         }
-        .section-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+        .section-label::before { content: ''; width: 32px; height: 2px; background: linear-gradient(90deg, var(--blue), var(--gold)); border-radius: 2px; }
         html[dir="rtl"] .section-label::before { display: none; }
-        html[dir="rtl"] .section-label::after { content: ''; width: 32px; height: 1px; background: var(--gold); }
+        html[dir="rtl"] .section-label::after { content: ''; width: 32px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--blue)); border-radius: 2px; }
 
         .section-title {
             font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
@@ -114,19 +115,19 @@
         }
         .nav-links a::after {
             content: ''; position: absolute; bottom: -4px; left: 0; width: 0;
-            height: 1px; background: var(--gold); transition: width var(--transition);
+            height: 1px; background: var(--blue); transition: width var(--transition);
         }
         html[dir="rtl"] .nav-links a::after { left: auto; right: 0; }
-        .nav-links a:hover { color: var(--gold-light); }
+        .nav-links a:hover { color: var(--blue); }
         .nav-links a:hover::after { width: 100%; }
 
         .btn-order-nav {
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--bg-deep); border: none; padding: 10px 28px; border-radius: 50px;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            color: #fff; border: none; padding: 10px 28px; border-radius: 50px;
             font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
             cursor: pointer; transition: var(--transition); text-decoration: none; letter-spacing: 0.5px;
         }
-        .btn-order-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,168,83,0.3); }
+        .btn-order-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(67,162,226,0.3); }
 
         .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
         .menu-toggle span { width: 24px; height: 1.5px; background: var(--text-primary); transition: var(--transition); display: block; }
@@ -199,7 +200,8 @@
             border-radius: 50px; font-family: var(--font-body); font-size: 0.9rem; font-weight: 400;
             cursor: pointer; transition: var(--transition); text-decoration: none;
         }
-        .btn-secondary:hover { border-color: var(--gold-dark); color: var(--gold-light); }
+        .btn-secondary { border-color: var(--blue); color: var(--blue); }
+        .btn-secondary:hover { background: var(--blue); color: #fff; box-shadow: 0 8px 24px rgba(67,162,226,0.2); }
 
         /* Hero visuals */
         .hero-visual { position: relative; height: 560px; animation: fadeInRight 1s ease 0.4s both; }
@@ -243,7 +245,9 @@
         .trust-item { text-align: center; padding: 24px; }
         .trust-icon {
             width: 48px; height: 48px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; background: rgba(184,144,45,0.06); border: 1px solid rgba(184,144,45,0.1);
+            border-radius: 50%; background: rgba(184,144,45,0.06); border: 1px solid rgba(184,144,45,0.1); }
+        .trust-item:nth-child(odd) .trust-icon { background: rgba(67,162,226,0.06); border-color: rgba(67,162,226,0.12); }
+        .trust-item:nth-child(odd) .trust-icon svg { color: var(--blue);
         }
         .trust-icon svg { width: 22px; height: 22px; color: var(--gold); }
         .trust-item h4 { font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
@@ -314,12 +318,12 @@
         .product-price { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--gold); }
         .btn-add {
             display: inline-flex; align-items: center; gap: 6px;
-            padding: 8px 18px; border-radius: 50px; border: 1px solid var(--gold);
-            background: transparent; color: var(--gold); font-family: var(--font-body);
+            padding: 8px 18px; border-radius: 50px; border: 1px solid var(--blue);
+            background: transparent; color: var(--blue); font-family: var(--font-body);
             font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3px;
             cursor: pointer; transition: var(--transition); white-space: nowrap;
         }
-        .btn-add:hover { background: var(--gold); color: #fff; }
+        .btn-add:hover { background: var(--blue); color: #fff; box-shadow: 0 4px 16px rgba(67,162,226,0.25); }
         .btn-add svg { width: 14px; height: 14px; }
 
         /* ── ORDER SECTION ── */
@@ -361,12 +365,12 @@
 
         .btn-submit {
             width: 100%; padding: 16px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--bg-deep); border: none; border-radius: var(--radius);
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            color: #fff; border: none; border-radius: var(--radius);
             font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
             cursor: pointer; transition: var(--transition); letter-spacing: 0.5px; margin-top: 8px;
         }
-        .btn-submit:hover { box-shadow: 0 8px 30px rgba(212,168,83,0.35); transform: translateY(-2px); }
+        .btn-submit:hover { box-shadow: 0 8px 30px rgba(67,162,226,0.35); transform: translateY(-2px); }
 
         /* ── ABOUT ── */
         .about { padding: 80px 0; border-top: 1px solid var(--border); }
@@ -385,7 +389,7 @@
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 12px; }
         .footer-col ul li a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color var(--transition); }
-        .footer-col ul li a:hover { color: var(--gold-light); }
+        .footer-col ul li a:hover { color: var(--blue); }
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid var(--border); }
         .footer-bottom p { font-size: 0.78rem; color: var(--text-muted); }
         .social-links { display: flex; gap: 12px; }
@@ -394,7 +398,7 @@
             display: flex; align-items: center; justify-content: center; color: var(--text-muted);
             text-decoration: none; transition: var(--transition);
         }
-        .social-links a:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,168,83,0.06); }
+        .social-links a:hover { border-color: var(--blue); color: var(--blue); background: rgba(67,162,226,0.06); }
         .social-links a svg { width: 18px; height: 18px; }
 
         /* ── MODAL ── */
@@ -576,7 +580,7 @@
             </div>
             <div class="trust-item">
                 <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-                <h4 data-i18n="trust_delivery_title">Livraison 58 wilayas</h4>
+                <h4 data-i18n="trust_delivery_title">Livraison 69 wilayas</h4>
                 <p data-i18n="trust_delivery_desc">Partout en Algerie, a domicile</p>
             </div>
             <div class="trust-item">
@@ -662,7 +666,7 @@
                     <ul class="order-features">
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat1">Reponse sous 24h maximum</span></li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat2">Paiement a la livraison uniquement</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat3">Livraison vers les 58 wilayas</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat3">Livraison vers les 69 wilayas</span></li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat4">Emballage soigne et securise</span></li>
                     </ul>
                 </div>
@@ -832,7 +836,7 @@
                 hero_cta: "Voir la collection", hero_cta2: "Commander", hero_stat: "Modeles disponibles",
                 // Trust
                 trust_install_title: "Installation facile", trust_install_desc: "Instructions incluses avec chaque applique",
-                trust_delivery_title: "Livraison 58 wilayas", trust_delivery_desc: "Partout en Algerie, a domicile",
+                trust_delivery_title: "Livraison 69 wilayas", trust_delivery_desc: "Partout en Algerie, a domicile",
                 trust_quality_title: "Qualite garantie", trust_quality_desc: "Produits testes et verifies",
                 trust_payment_title: "Paiement a la livraison", trust_payment_desc: "Payez cash a la reception",
                 // Categories
@@ -852,7 +856,7 @@
                 order_label: "Commande", order_title_1: "Passez votre ", order_title_2: "commande", order_title_3: " en toute simplicite",
                 order_desc: "Remplissez le formulaire ci-contre et nous vous contacterons dans les plus brefs delais pour confirmer votre commande et organiser la livraison.",
                 order_feat1: "Reponse sous 24h maximum", order_feat2: "Paiement a la livraison uniquement",
-                order_feat3: "Livraison vers les 58 wilayas", order_feat4: "Emballage soigne et securise",
+                order_feat3: "Livraison vers les 69 wilayas", order_feat4: "Emballage soigne et securise",
                 // Form
                 form_title: "Formulaire de commande", form_subtitle: "Tous les champs sont obligatoires",
                 form_name: "Nom complet", form_name_ph: "Votre nom",
@@ -882,7 +886,7 @@
                 hero_subtitle: "\u0623\u0628\u0644\u064a\u0643\u0627\u062a \u062c\u062f\u0627\u0631\u064a\u0629 \u0628\u062a\u0635\u0645\u064a\u0645 \u0641\u0631\u064a\u062f \u0644\u062a\u062d\u0648\u064a\u0644 \u0643\u0644 \u062c\u062f\u0627\u0631 \u0625\u0644\u0649 \u062a\u062d\u0641\u0629 \u0636\u0648\u0626\u064a\u0629. \u0627\u0644\u062a\u0648\u0635\u064a\u0644 \u0644\u062c\u0645\u064a\u0639 \u0623\u0646\u062d\u0627\u0621 \u0627\u0644\u062c\u0632\u0627\u0626\u0631.",
                 hero_cta: "\u0634\u0627\u0647\u062f \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629", hero_cta2: "\u0627\u0637\u0644\u0628 \u0627\u0644\u0622\u0646", hero_stat: "\u0645\u0648\u062f\u064a\u0644 \u0645\u062a\u0648\u0641\u0631",
                 trust_install_title: "\u062a\u0631\u0643\u064a\u0628 \u0633\u0647\u0644", trust_install_desc: "\u062a\u0639\u0644\u064a\u0645\u0627\u062a \u0645\u0631\u0641\u0642\u0629 \u0645\u0639 \u0643\u0644 \u0645\u0646\u062a\u062c",
-                trust_delivery_title: "\u062a\u0648\u0635\u064a\u0644 \u0644\u0640 58 \u0648\u0644\u0627\u064a\u0629", trust_delivery_desc: "\u0625\u0644\u0649 \u062c\u0645\u064a\u0639 \u0623\u0646\u062d\u0627\u0621 \u0627\u0644\u062c\u0632\u0627\u0626\u0631",
+                trust_delivery_title: "\u062a\u0648\u0635\u064a\u0644 \u0644\u0640 69 \u0648\u0644\u0627\u064a\u0629", trust_delivery_desc: "\u0625\u0644\u0649 \u062c\u0645\u064a\u0639 \u0623\u0646\u062d\u0627\u0621 \u0627\u0644\u062c\u0632\u0627\u0626\u0631",
                 trust_quality_title: "\u062c\u0648\u062f\u0629 \u0645\u0636\u0645\u0648\u0646\u0629", trust_quality_desc: "\u0645\u0646\u062a\u062c\u0627\u062a \u0645\u062e\u062a\u0628\u0631\u0629 \u0648\u0645\u0648\u062b\u0648\u0642\u0629",
                 trust_payment_title: "\u0627\u0644\u062f\u0641\u0639 \u0639\u0646\u062f \u0627\u0644\u0627\u0633\u062a\u0644\u0627\u0645", trust_payment_desc: "\u0627\u062f\u0641\u0639 \u0646\u0642\u062f\u0627\u064b \u0639\u0646\u062f \u0627\u0644\u062a\u0648\u0635\u064a\u0644",
                 cat_label: "\u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629", cat_title_1: "\u0627\u0633\u062a\u0643\u0634\u0641 ", cat_title_2: "\u0641\u0626\u0627\u062a\u0646\u0627",
@@ -898,7 +902,7 @@
                 order_label: "\u0627\u0644\u0637\u0644\u0628", order_title_1: "\u0642\u062f\u0645 ", order_title_2: "\u0637\u0644\u0628\u0643", order_title_3: " \u0628\u0643\u0644 \u0633\u0647\u0648\u0644\u0629",
                 order_desc: "\u0627\u0645\u0644\u0623 \u0627\u0644\u0646\u0645\u0648\u0630\u062c \u0648\u0633\u0646\u062a\u0635\u0644 \u0628\u0643 \u0641\u064a \u0623\u0642\u0631\u0628 \u0648\u0642\u062a \u0644\u062a\u0623\u0643\u064a\u062f \u0637\u0644\u0628\u0643 \u0648\u062a\u0646\u0638\u064a\u0645 \u0627\u0644\u062a\u0648\u0635\u064a\u0644.",
                 order_feat1: "\u0631\u062f \u062e\u0644\u0627\u0644 24 \u0633\u0627\u0639\u0629 \u0643\u062d\u062f \u0623\u0642\u0635\u0649", order_feat2: "\u0627\u0644\u062f\u0641\u0639 \u0639\u0646\u062f \u0627\u0644\u0627\u0633\u062a\u0644\u0627\u0645 \u0641\u0642\u0637",
-                order_feat3: "\u0627\u0644\u062a\u0648\u0635\u064a\u0644 \u0644\u0640 58 \u0648\u0644\u0627\u064a\u0629", order_feat4: "\u062a\u063a\u0644\u064a\u0641 \u0645\u062d\u0643\u0645 \u0648\u0622\u0645\u0646",
+                order_feat3: "\u0627\u0644\u062a\u0648\u0635\u064a\u0644 \u0644\u0640 69 \u0648\u0644\u0627\u064a\u0629", order_feat4: "\u062a\u063a\u0644\u064a\u0641 \u0645\u062d\u0643\u0645 \u0648\u0622\u0645\u0646",
                 form_title: "\u0646\u0645\u0648\u0630\u062c \u0627\u0644\u0637\u0644\u0628", form_subtitle: "\u062c\u0645\u064a\u0639 \u0627\u0644\u062d\u0642\u0648\u0644 \u0645\u0637\u0644\u0648\u0628\u0629",
                 form_name: "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0643\u0627\u0645\u0644", form_name_ph: "\u0627\u0633\u0645\u0643",
                 form_phone: "\u0627\u0644\u0647\u0627\u062a\u0641", form_wilaya: "\u0627\u0644\u0648\u0644\u0627\u064a\u0629", form_wilaya_ph: "\u0627\u062e\u062a\u0631 \u0648\u0644\u0627\u064a\u062a\u0643",
@@ -922,7 +926,7 @@
                 hero_subtitle: "Unique designer wall sconces to transform every wall into a luminous work of art. Delivery across all of Algeria.",
                 hero_cta: "View collection", hero_cta2: "Order now", hero_stat: "Models available",
                 trust_install_title: "Easy installation", trust_install_desc: "Instructions included with each sconce",
-                trust_delivery_title: "Delivery to 58 wilayas", trust_delivery_desc: "Across all of Algeria, to your door",
+                trust_delivery_title: "Delivery to 69 wilayas", trust_delivery_desc: "Across all of Algeria, to your door",
                 trust_quality_title: "Guaranteed quality", trust_quality_desc: "Tested and verified products",
                 trust_payment_title: "Cash on delivery", trust_payment_desc: "Pay when you receive your order",
                 cat_label: "Collection", cat_title_1: "Explore our ", cat_title_2: "categories",
@@ -938,7 +942,7 @@
                 order_label: "Order", order_title_1: "Place your ", order_title_2: "order", order_title_3: " with ease",
                 order_desc: "Fill out the form and we'll contact you as soon as possible to confirm your order and arrange delivery.",
                 order_feat1: "Response within 24 hours", order_feat2: "Cash on delivery only",
-                order_feat3: "Delivery to all 58 wilayas", order_feat4: "Careful and secure packaging",
+                order_feat3: "Delivery to all 69 wilayas", order_feat4: "Careful and secure packaging",
                 form_title: "Order form", form_subtitle: "All fields are required",
                 form_name: "Full name", form_name_ph: "Your name",
                 form_phone: "Phone", form_wilaya: "Wilaya", form_wilaya_ph: "Choose your wilaya",
