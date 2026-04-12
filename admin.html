@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASY Store - Admin Panel</title>
+    <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -200,9 +201,16 @@
         .img-preview-zone svg { width: 32px; height: 32px; color: var(--text-muted); margin-bottom: 8px; }
         .img-preview-zone p { font-size: 0.78rem; color: var(--text-muted); }
         .img-preview-zone p strong { color: var(--blue); }
-        .img-preview-zone.has-img { padding: 8px; }
-        .img-preview-zone.has-img img { max-height: 140px; border-radius: 8px; object-fit: contain; }
-        .img-path-input { margin-top: 10px; }
+        .img-preview-zone.has-img { padding: 12px; }
+        .img-preview-zone.has-img img.preview-img { max-height: 160px; border-radius: 8px; object-fit: contain; }
+        .img-preview-zone.dragover { border-color: var(--blue); background: var(--blue-light); }
+        .img-change-btn {
+            display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+            padding: 6px 14px; border-radius: 50px; border: 1px solid var(--border);
+            background: #fff; color: var(--text-sec); font-family: var(--font); font-size: 0.72rem;
+            font-weight: 500; cursor: pointer; transition: all 0.2s;
+        }
+        .img-change-btn:hover { border-color: var(--blue); color: var(--blue); }
 
         .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
 
@@ -242,9 +250,12 @@
         <div class="login-box">
             <h1>ASY Store</h1>
             <p>Panneau d'administration</p>
-            <div class="login-error" id="loginError">Mot de passe incorrect</div>
-            <input type="password" id="loginPass" placeholder="Mot de passe" autofocus>
-            <button class="btn btn-blue btn-full" onclick="tryLogin()">Connexion</button>
+            <div class="login-error" id="loginError"></div>
+            <button class="btn btn-blue btn-full" onclick="googleLogin()" id="googleBtn" style="gap:10px">
+                <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.9 23.9 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+                Se connecter avec Google
+            </button>
+            <p style="margin-top:16px;font-size:0.72rem;color:var(--text-muted)">Seul le compte <strong>asystore.dz@gmail.com</strong> est autorise</p>
         </div>
     </div>
 
@@ -380,16 +391,13 @@
             </div>
 
             <div class="form-section">
-                <div class="form-section-title">Image</div>
+                <div class="form-section-title">Image du produit</div>
                 <div class="img-preview-zone" id="imgZone" onclick="document.getElementById('imgFile').click()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" id="imgPlaceholderIcon"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                    <p id="imgPlaceholderText"><strong>Cliquez pour uploader</strong> ou glissez une image</p>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" id="imgPlaceholderIcon"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <p id="imgPlaceholderText"><strong>Cliquez pour uploader une image</strong><br><span style="font-size:0.7rem;color:var(--text-muted)">JPG, PNG, WEBP - taille recommandee : 800x800px</span></p>
                     <input type="file" accept="image/*" id="imgFile" style="position:absolute;inset:0;opacity:0;cursor:pointer" onchange="handleImgUpload(event)">
                 </div>
-                <div class="form-group img-path-input">
-                    <label>Ou entrez le chemin (ex: Products/mon-image.jpg)</label>
-                    <input type="text" id="imgPath" placeholder="Products/nom-du-fichier.jpg" oninput="previewPath()">
-                </div>
+                <input type="hidden" id="imgPath">
             </div>
 
             <div class="modal-actions">
@@ -414,78 +422,81 @@
         </div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+    <script src="firebase-init.js"></script>
+
     <script>
     (function() {
         'use strict';
 
-        const STORAGE_KEY = 'asy_products';
-        const PASS_KEY = 'asy_admin_auth';
-        const ADMIN_PASS = 'asy2024';
+        const ADMIN_EMAIL = 'asystore.dz@gmail.com';
 
         let products = [];
         let deleteTargetId = null;
+        var currentImgFile = null;
 
-        // ── AUTH ──
+        // ── AUTH (Firebase Google Sign-In) ──
         function init() {
-            if (sessionStorage.getItem(PASS_KEY) === '1') {
-                showAdmin();
+            if (!isFirebaseConfigured()) {
+                document.getElementById('loginError').textContent = 'Firebase non configure. Ouvrez firebase-init.js et collez votre config.';
+                document.getElementById('loginError').style.display = 'block';
+                document.getElementById('googleBtn').disabled = true;
+                return;
             }
-            document.getElementById('loginPass').addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') tryLogin();
+            // Listen for auth state
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user && user.email === ADMIN_EMAIL) {
+                    showAdmin();
+                } else if (user) {
+                    // Wrong account
+                    firebase.auth().signOut();
+                    document.getElementById('loginError').textContent = 'Acces refuse. Seul ' + ADMIN_EMAIL + ' est autorise.';
+                    document.getElementById('loginError').style.display = 'block';
+                }
             });
         }
 
-        window.tryLogin = function() {
-            var pass = document.getElementById('loginPass').value;
-            if (pass === ADMIN_PASS) {
-                sessionStorage.setItem(PASS_KEY, '1');
-                showAdmin();
-            } else {
+        window.googleLogin = function() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            provider.setCustomParameters({ login_hint: ADMIN_EMAIL });
+            firebase.auth().signInWithPopup(provider).catch(function(err) {
+                document.getElementById('loginError').textContent = 'Erreur : ' + err.message;
                 document.getElementById('loginError').style.display = 'block';
-                document.getElementById('loginPass').value = '';
-                document.getElementById('loginPass').focus();
-            }
+            });
         };
 
-        window.logout = function() {
-            sessionStorage.removeItem(PASS_KEY);
-            location.reload();
-        };
+        window.logout = function() { firebase.auth().signOut().then(function() { location.reload(); }); };
 
         function showAdmin() {
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('adminPanel').classList.add('active');
-            loadProducts();
-            renderTable();
-            updateStats();
+            listenProducts();
         }
 
-        // ── DATA ──
-        function loadProducts() {
-            var data = localStorage.getItem(STORAGE_KEY);
-            if (data) {
-                try { products = JSON.parse(data); } catch(e) { products = []; }
-            }
-        }
-
-        function saveAll() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-            renderTable();
-            updateStats();
+        // ── FIREBASE REALTIME LISTENER ──
+        function listenProducts() {
+            db.ref('products').on('value', function(snapshot) {
+                products = [];
+                snapshot.forEach(function(child) {
+                    var p = child.val();
+                    p._key = child.key;
+                    products.push(p);
+                });
+                renderTable();
+                updateStats();
+            });
         }
 
         function updateStats() {
             document.getElementById('statTotal').textContent = products.length;
             document.getElementById('statClassic').textContent = products.filter(function(p){ return p.cat === 'classique'; }).length;
             document.getElementById('statLed').textContent = products.filter(function(p){ return p.cat === 'led'; }).length;
-            var artDeco = products.filter(function(p){ return p.cat === 'artistique' || p.cat === 'decorative'; }).length;
-            document.getElementById('statArtDeco').textContent = artDeco;
+            document.getElementById('statArtDeco').textContent = products.filter(function(p){ return p.cat === 'artistique' || p.cat === 'decorative'; }).length;
             document.getElementById('countBadge').textContent = products.length + ' produits';
-        }
-
-        function nextId() {
-            if (products.length === 0) return 1;
-            return Math.max.apply(null, products.map(function(p){ return p.id; })) + 1;
         }
 
         // ── TABLE ──
@@ -493,39 +504,31 @@
             var search = document.getElementById('searchInput').value.toLowerCase();
             var filtered = products.filter(function(p) {
                 if (!search) return true;
-                return (p.nameFr + p.nameAr + p.nameEn + p.cat + p.price).toLowerCase().indexOf(search) !== -1;
+                return ((p.nameFr||'') + (p.nameAr||'') + (p.nameEn||'') + (p.cat||'') + (p.price||'')).toLowerCase().indexOf(search) !== -1;
             });
-
             var tbody = document.getElementById('tableBody');
             var empty = document.getElementById('emptyState');
-
-            if (filtered.length === 0) {
-                tbody.innerHTML = '';
-                empty.style.display = 'block';
-                return;
-            }
+            if (filtered.length === 0) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
             empty.style.display = 'none';
 
-            var catLabels = { classique: 'Classique', artistique: 'Artistique', led: 'LED Moderne', decorative: 'Decorative' };
-            var catColors = { classique: 'gold', artistique: 'green', led: 'blue', decorative: 'gold' };
-            var specLabels = { int: 'Interieur', ext: 'Exterieur', both: 'Int & Ext' };
-            var badgeLabels = { bestseller: 'Best-seller', premium: 'Premium', new: 'Nouveau' };
+            var catLabels = { classique:'Classique', artistique:'Artistique', led:'LED Moderne', decorative:'Decorative' };
+            var catColors = { classique:'gold', artistique:'green', led:'blue', decorative:'gold' };
+            var specLabels = { int:'Interieur', ext:'Exterieur', both:'Int & Ext' };
+            var badgeLabels = { bestseller:'Best-seller', premium:'Premium', new:'Nouveau' };
 
             tbody.innerHTML = filtered.map(function(p) {
-                var imgSrc = p.imgData || p.img || '';
-                var isBase64 = imgSrc.indexOf('data:') === 0;
                 return '<tr>' +
                     '<td><div class="product-cell">' +
-                        '<img src="' + imgSrc + '" alt="" onerror="this.style.display=\'none\'">' +
-                        '<div><div class="name">' + esc(p.nameFr) + '</div><div class="sub">' + esc(p.nameEn) + '</div></div>' +
+                        '<img src="' + esc(p.imageUrl || '') + '" alt="" onerror="this.style.display=\'none\'">' +
+                        '<div><div class="name">' + esc(p.nameFr) + '</div><div class="sub">' + esc(p.nameEn || '') + '</div></div>' +
                     '</div></td>' +
-                    '<td><span class="tag tag-' + (catColors[p.cat] || 'blue') + '">' + (catLabels[p.cat] || p.cat) + '</span></td>' +
-                    '<td>' + (specLabels[p.spec] || p.spec) + '</td>' +
+                    '<td><span class="tag tag-' + (catColors[p.cat]||'blue') + '">' + (catLabels[p.cat]||p.cat) + '</span></td>' +
+                    '<td>' + (specLabels[p.spec]||p.spec||'') + '</td>' +
                     '<td><strong>' + esc(p.price) + '</strong></td>' +
-                    '<td>' + (p.badge ? '<span class="tag tag-gold">' + (badgeLabels[p.badge] || p.badge) + '</span>' : '<span style="color:var(--text-muted)">—</span>') + '</td>' +
+                    '<td>' + (p.badge ? '<span class="tag tag-gold">' + (badgeLabels[p.badge]||p.badge) + '</span>' : '<span style="color:var(--text-muted)">\u2014</span>') + '</td>' +
                     '<td><div class="actions">' +
-                        '<button class="btn btn-outline btn-sm" onclick="editProduct(' + p.id + ')">Modifier</button>' +
-                        '<button class="btn btn-red btn-sm" onclick="askDelete(' + p.id + ')">Supprimer</button>' +
+                        '<button class="btn btn-outline btn-sm" onclick="editProduct(\'' + p._key + '\')">Modifier</button>' +
+                        '<button class="btn btn-red btn-sm" onclick="askDelete(\'' + p._key + '\')">Supprimer</button>' +
                     '</div></td>' +
                 '</tr>';
             }).join('');
@@ -534,7 +537,7 @@
         function esc(s) { if (!s) return ''; var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
         // ── MODAL ──
-        window.openModal = function(id) {
+        window.openModal = function(key) {
             document.getElementById('editId').value = '';
             document.getElementById('nameFr').value = '';
             document.getElementById('nameAr').value = '';
@@ -545,11 +548,12 @@
             document.getElementById('badgeSelect').value = '';
             document.getElementById('imgPath').value = '';
             resetImgZone();
+            currentImgFile = null;
 
-            if (id) {
-                var p = products.find(function(x){ return x.id === id; });
+            if (key) {
+                var p = products.find(function(x){ return x._key === key; });
                 if (p) {
-                    document.getElementById('editId').value = p.id;
+                    document.getElementById('editId').value = p._key;
                     document.getElementById('nameFr').value = p.nameFr || '';
                     document.getElementById('nameAr').value = p.nameAr || '';
                     document.getElementById('nameEn').value = p.nameEn || '';
@@ -557,22 +561,7 @@
                     document.getElementById('specSelect').value = p.spec || 'int';
                     document.getElementById('priceInput').value = p.price || '';
                     document.getElementById('badgeSelect').value = p.badge || '';
-                    document.getElementById('imgPath').value = p.img || '';
-
-                    var src = p.imgData || p.img || '';
-                    if (src) {
-                        var zone = document.getElementById('imgZone');
-                        zone.classList.add('has-img');
-                        document.getElementById('imgPlaceholderIcon').style.display = 'none';
-                        document.getElementById('imgPlaceholderText').style.display = 'none';
-                        var prev = zone.querySelector('.preview-img');
-                        if (prev) prev.remove();
-                        var img = document.createElement('img');
-                        img.src = src;
-                        img.className = 'preview-img';
-                        zone.appendChild(img);
-                    }
-
+                    if (p.imageUrl) showImgPreview(p.imageUrl);
                     document.getElementById('modalTitle').textContent = 'Modifier le produit';
                     document.getElementById('modalSub').textContent = 'Mettez a jour les informations';
                     document.getElementById('saveBtnText').textContent = 'Enregistrer';
@@ -582,15 +571,11 @@
                 document.getElementById('modalSub').textContent = 'Remplissez les informations du produit dans les 3 langues';
                 document.getElementById('saveBtnText').textContent = 'Ajouter';
             }
-
             document.getElementById('modalOverlay').classList.add('active');
         };
 
-        window.editProduct = function(id) { openModal(id); };
-
-        window.closeModal = function() {
-            document.getElementById('modalOverlay').classList.remove('active');
-        };
+        window.editProduct = function(key) { openModal(key); };
+        window.closeModal = function() { document.getElementById('modalOverlay').classList.remove('active'); };
 
         function resetImgZone() {
             var zone = document.getElementById('imgZone');
@@ -599,29 +584,19 @@
             document.getElementById('imgPlaceholderText').style.display = '';
             var prev = zone.querySelector('.preview-img');
             if (prev) prev.remove();
+            var oldBtn = zone.querySelector('.img-change-btn');
+            if (oldBtn) oldBtn.remove();
             document.getElementById('imgFile').value = '';
         }
 
-        // ── IMAGE ──
-        var currentImgData = null;
-
+        // ── IMAGE UPLOAD ──
         window.handleImgUpload = function(e) {
             var file = e.target.files[0];
             if (!file) return;
+            currentImgFile = file;
             var reader = new FileReader();
-            reader.onload = function(ev) {
-                currentImgData = ev.target.result;
-                showImgPreview(currentImgData);
-            };
+            reader.onload = function(ev) { showImgPreview(ev.target.result); };
             reader.readAsDataURL(file);
-        };
-
-        window.previewPath = function() {
-            var path = document.getElementById('imgPath').value.trim();
-            if (path) {
-                currentImgData = null;
-                showImgPreview(path);
-            }
         };
 
         function showImgPreview(src) {
@@ -631,14 +606,34 @@
             document.getElementById('imgPlaceholderText').style.display = 'none';
             var prev = zone.querySelector('.preview-img');
             if (prev) prev.remove();
+            var oldBtn = zone.querySelector('.img-change-btn');
+            if (oldBtn) oldBtn.remove();
             var img = document.createElement('img');
-            img.src = src;
-            img.className = 'preview-img';
+            img.src = src; img.className = 'preview-img';
             img.onerror = function() { resetImgZone(); };
             zone.appendChild(img);
+            var changeBtn = document.createElement('button');
+            changeBtn.className = 'img-change-btn';
+            changeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> Changer l\'image';
+            changeBtn.onclick = function(e) { e.stopPropagation(); resetImgZone(); currentImgFile = null; document.getElementById('imgFile').click(); };
+            zone.appendChild(changeBtn);
         }
 
-        // ── SAVE ──
+        function uploadImage(file, productKey) {
+            return new Promise(function(resolve, reject) {
+                var ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+                var storagePath = 'products/' + productKey + '.' + ext;
+                var ref = storage.ref(storagePath);
+                var task = ref.put(file);
+                task.on('state_changed', null, reject, function() {
+                    ref.getDownloadURL().then(function(url) {
+                        resolve({ url: url, path: storagePath });
+                    }).catch(reject);
+                });
+            });
+        }
+
+        // ── SAVE (Firebase) ──
         window.saveProduct = function() {
             var nameFr = document.getElementById('nameFr').value.trim();
             var nameAr = document.getElementById('nameAr').value.trim();
@@ -647,67 +642,88 @@
             var spec = document.getElementById('specSelect').value;
             var price = document.getElementById('priceInput').value.trim();
             var badge = document.getElementById('badgeSelect').value;
-            var imgPath = document.getElementById('imgPath').value.trim();
 
             if (!nameFr) { document.getElementById('nameFr').focus(); return; }
             if (!price) { document.getElementById('priceInput').focus(); return; }
 
-            var editId = document.getElementById('editId').value;
-            if (editId) {
-                var p = products.find(function(x){ return x.id === parseInt(editId); });
-                if (p) {
-                    p.nameFr = nameFr; p.nameAr = nameAr; p.nameEn = nameEn;
-                    p.cat = cat; p.spec = spec; p.price = price; p.badge = badge;
-                    if (imgPath) p.img = imgPath;
-                    if (currentImgData) p.imgData = currentImgData;
-                    else if (!imgPath) { /* keep existing */ }
+            var saveBtn = document.querySelector('.modal-actions .btn-blue');
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<svg class="spinner" viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="30 70" style="animation:spin 0.8s linear infinite"/></svg> Enregistrement...';
+
+            var editKey = document.getElementById('editId').value;
+            var productData = { nameFr:nameFr, nameAr:nameAr, nameEn:nameEn, cat:cat, spec:spec, price:price, badge:badge };
+
+            if (editKey) {
+                // ── UPDATE ──
+                var existing = products.find(function(x){ return x._key === editKey; });
+                if (existing) { productData.imageUrl = existing.imageUrl || ''; productData.imagePath = existing.imagePath || ''; }
+                if (currentImgFile) {
+                    uploadImage(currentImgFile, editKey).then(function(result) {
+                        productData.imageUrl = result.url;
+                        productData.imagePath = result.path;
+                        db.ref('products/' + editKey).set(productData).then(done).catch(onErr);
+                    }).catch(onErr);
+                } else {
+                    db.ref('products/' + editKey).set(productData).then(done).catch(onErr);
                 }
             } else {
-                var newP = {
-                    id: nextId(), nameFr: nameFr, nameAr: nameAr, nameEn: nameEn,
-                    cat: cat, spec: spec, price: price, badge: badge,
-                    img: imgPath || ''
-                };
-                if (currentImgData) newP.imgData = currentImgData;
-                products.push(newP);
+                // ── CREATE ──
+                var newRef = db.ref('products').push();
+                var newKey = newRef.key;
+                if (currentImgFile) {
+                    uploadImage(currentImgFile, newKey).then(function(result) {
+                        productData.imageUrl = result.url;
+                        productData.imagePath = result.path;
+                        newRef.set(productData).then(done).catch(onErr);
+                    }).catch(onErr);
+                } else {
+                    newRef.set(productData).then(done).catch(onErr);
+                }
             }
 
-            currentImgData = null;
-            saveAll();
-            closeModal();
+            function done() {
+                currentImgFile = null;
+                resetSaveBtn();
+                closeModal();
+            }
+            function onErr(err) {
+                alert('Erreur : ' + err.message);
+                resetSaveBtn();
+            }
+            function resetSaveBtn() {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg> <span id="saveBtnText">Enregistrer</span>';
+            }
         };
 
-        // ── DELETE ──
-        window.askDelete = function(id) {
-            deleteTargetId = id;
-            var p = products.find(function(x){ return x.id === id; });
+        // ── DELETE (Firebase) ──
+        window.askDelete = function(key) {
+            deleteTargetId = key;
+            var p = products.find(function(x){ return x._key === key; });
             document.getElementById('confirmText').textContent = 'Supprimer "' + (p ? p.nameFr : '') + '" ? Cette action est irreversible.';
             document.getElementById('confirmOverlay').classList.add('active');
         };
-
-        window.closeConfirm = function() {
-            document.getElementById('confirmOverlay').classList.remove('active');
-            deleteTargetId = null;
-        };
-
+        window.closeConfirm = function() { document.getElementById('confirmOverlay').classList.remove('active'); deleteTargetId = null; };
         window.confirmDelete = function() {
-            if (deleteTargetId !== null) {
-                products = products.filter(function(p){ return p.id !== deleteTargetId; });
-                saveAll();
+            if (deleteTargetId) {
+                var p = products.find(function(x){ return x._key === deleteTargetId; });
+                db.ref('products/' + deleteTargetId).remove();
+                // Delete image using stored path
+                if (p && p.imagePath) {
+                    storage.ref(p.imagePath).delete().catch(function(){});
+                }
             }
             closeConfirm();
         };
 
         // ── EXPORT / IMPORT ──
         window.exportData = function() {
-            var json = JSON.stringify(products, null, 2);
+            var clean = products.map(function(p) { var c = Object.assign({}, p); delete c._key; return c; });
+            var json = JSON.stringify(clean, null, 2);
             var blob = new Blob([json], { type: 'application/json' });
-            var url = URL.createObjectURL(blob);
-            var a = document.createElement('a');
-            a.href = url;
+            var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
             a.download = 'asy-products-' + new Date().toISOString().slice(0,10) + '.json';
-            a.click();
-            URL.revokeObjectURL(url);
+            a.click(); URL.revokeObjectURL(a.href);
         };
 
         window.importData = function(e) {
@@ -718,25 +734,47 @@
                 try {
                     var data = JSON.parse(ev.target.result);
                     if (Array.isArray(data)) {
-                        products = data;
-                        saveAll();
-                        alert('Import reussi : ' + data.length + ' produits.');
+                        if (!confirm('Attention : cela va remplacer TOUS les produits existants (' + products.length + ') par ' + data.length + ' nouveaux produits.\n\nContinuer ?')) return;
+                        db.ref('products').remove().then(function() {
+                            var updates = {};
+                            data.forEach(function(p) {
+                                var key = db.ref('products').push().key;
+                                updates['products/' + key] = p;
+                            });
+                            db.ref().update(updates).then(function() {
+                                alert('Import reussi : ' + data.length + ' produits.');
+                            });
+                        });
                     }
-                } catch(err) {
-                    alert('Erreur : fichier JSON invalide.');
-                }
+                } catch(err) { alert('Erreur : fichier JSON invalide.'); }
             };
             reader.readAsText(file);
             e.target.value = '';
         };
 
-        // ── CLOSE MODAL ON OUTSIDE CLICK ──
-        document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
+        // ── EVENTS ──
+        document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+        document.getElementById('confirmOverlay').addEventListener('click', function(e) { if (e.target === this) closeConfirm(); });
+
+        // ── DRAG & DROP ──
+        var imgZone = document.getElementById('imgZone');
+        imgZone.addEventListener('dragover', function(e) { e.preventDefault(); imgZone.classList.add('dragover'); });
+        imgZone.addEventListener('dragleave', function() { imgZone.classList.remove('dragover'); });
+        imgZone.addEventListener('drop', function(e) {
+            e.preventDefault(); imgZone.classList.remove('dragover');
+            var file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                currentImgFile = file;
+                var reader = new FileReader();
+                reader.onload = function(ev) { showImgPreview(ev.target.result); };
+                reader.readAsDataURL(file);
+            }
         });
-        document.getElementById('confirmOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeConfirm();
-        });
+
+        // ── Spinner animation ──
+        var style = document.createElement('style');
+        style.textContent = '@keyframes spin { to { transform: rotate(360deg); } } .spinner { animation: spin 0.8s linear infinite; }';
+        document.head.appendChild(style);
 
         init();
     })();
