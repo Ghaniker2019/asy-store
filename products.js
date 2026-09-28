@@ -5,7 +5,7 @@ var ASY_PRODUCTS = [
     {
         id: 1, cat: "classique", spec: "int", price: "4 500 DA",
         images: ["Products/660512119_964583239865226_8198389326246780176_n.jpg"],
-        name: { fr: "Applique Abat-jour Classique Or", ar: "أبليك كلاسيكي ذهبي", en: "Classic Gold Shade Sconce" },
+        name: { fr: "Applique Anneau LED Noir", ar: "أبليك حلقة LED سوداء", en: "Black LED Ring Sconce" },
         desc: {
             fr: "Un anneau lumineux au dessin épuré : la moitié haute s'illumine d'une lumière douce, tandis que la moitié basse, en finition noir mat, se fixe sur une platine rectangulaire noire. Un petit panneau de boutons (marche/arrêt, + et −) est intégré directement sur l'applique. Une touche moderne et graphique pour un salon, une chambre ou un couloir.",
             ar: "حلقة مضيئة بتصميم بسيط وأنيق: نصفها العلوي يشعّ بضوء ناعم، ونصفها السفلي بلون أسود مطفأ مثبّت على قاعدة مستطيلة سوداء. تضمّ القاعدة لوحة أزرار صغيرة للتشغيل والإطفاء مع زرّين + و−. لمسة عصرية ذات طابع هندسي تناسب الصالون أو غرفة النوم أو الممر.",
@@ -15,7 +15,7 @@ var ASY_PRODUCTS = [
     {
         id: 2, cat: "classique", spec: "int", price: "4 200 DA",
         images: ["Products/661454881_964582986531918_5483709476643133918_n.jpg"],
-        name: { fr: "Applique Abat-jour Chrome", ar: "أبليك كرومي", en: "Chrome Shade Sconce" },
+        name: { fr: "Applique Panneau LED à Bandeau", ar: "أبليك لوح LED بشريط", en: "Banded LED Panel Sconce" },
         desc: {
             fr: "Un panneau rectangulaire translucide aux angles adoucis, traversé en son centre par un bandeau à finition argentée brossée. La lumière chaude s'échappe vers le haut et vers le bas, fait rayonner tout le panneau et dessine un halo doux sur le mur. Un modèle sobre et contemporain pour un couloir, une entrée, un escalier ou une chambre.",
             ar: "لوح مستطيل نصف شفاف بزوايا ناعمة، يتوسّطه شريط أفقي بلون فضي ولمسة معدنية ناعمة. تنساب الإضاءة الدافئة نحو الأعلى والأسفل فيتوهّج اللوح بأكمله ويرسم هالة لطيفة على الجدار. تصميم عصري هادئ يناسب الممر والمدخل والدرج وغرفة النوم.",
@@ -25,7 +25,7 @@ var ASY_PRODUCTS = [
     {
         id: 3, cat: "classique", spec: "int", price: "4 500 DA",
         images: ["Products/661710772_964583469865203_6823182422207281289_n.jpg"],
-        name: { fr: "Applique Abat-jour Noir Mat", ar: "أبليك أسود مات", en: "Matte Black Shade Sconce" },
+        name: { fr: "Applique Ovale LED Noire", ar: "أبليك LED بيضاوي أسود", en: "Black Oval LED Sconce" },
         desc: {
             fr: "Une applique plate en forme d'ovale allongé, en finition noir mat, traversée par une fine ligne lumineuse verticale. Un halo se diffuse aussi à l'arrière, sur le mur, pour une ambiance tamisée. Un panneau de boutons (marche/arrêt, + et −) est intégré sur le devant : un choix pratique en tête de lit, dans une chambre ou un couloir.",
             ar: "إضاءة جدارية مسطّحة على شكل بيضاوي مستطيل بلون أسود مطفأ، يشقّها خط ضوئي عمودي رفيع. وتنبعث من خلفها هالة ضوئية على الجدار تمنح المكان أجواء هادئة. تحتوي واجهتها على أزرار للتشغيل والإطفاء مع زرّين + و−، ما يجعلها عملية بجانب السرير في غرفة النوم أو في الممر.",
@@ -35,7 +35,7 @@ var ASY_PRODUCTS = [
     {
         id: 4, cat: "classique", spec: "int", price: "5 000 DA",
         images: ["Products/661715173_964583323198551_6902706529067766289_n.jpg"],
-        name: { fr: "Applique Classique Double", ar: "أبليك كلاسيكي مزدوج", en: "Double Classic Sconce" },
+        name: { fr: "Applique Tube LED Noire", ar: "أبليك أنبوب LED أسود", en: "Black LED Tube Sconce" },
         desc: {
             fr: "Une composition verticale graphique : un bloc carré noir d'où partent deux tiges noires décalées, encadrant un tube lumineux blanc. La lumière chaude s'échappe vers le haut et vers le bas et souligne la silhouette élancée de l'applique sur le mur. Un style contemporain et épuré qui trouve sa place dans un couloir, une entrée, un escalier ou un salon.",
             ar: "تركيبة عمودية بخطوط هندسية: قاعدة مربّعة سوداء ينطلق منها قضيبان أسودان متعاكسان يحيطان بأنبوب مضيء أبيض. تنساب الإضاءة الدافئة نحو الأعلى والأسفل فتُبرز القامة الممشوقة للقطعة على الجدار. أسلوب عصري بسيط يجد مكانه في الممر أو المدخل أو الدرج أو الصالون.",
@@ -45,7 +45,7 @@ var ASY_PRODUCTS = [
     {
         id: 5, cat: "classique", spec: "int", price: "3 800 DA",
         images: ["Products/661861904_964582506531966_2113192358026335988_n.jpg"],
-        name: { fr: "Applique Bras Dore", ar: "أبليك ذراع ذهبي", en: "Golden Arm Sconce" },
+        name: { fr: "Applique Bras Doré", ar: "أبليك ذراع ذهبي", en: "Golden Arm Sconce" },
         desc: {
             fr: "Une longue barre lumineuse horizontale en finition dorée, portée par deux bras courbes fixés sur une platine rectangulaire assortie. Sa lumière diffuse et homogène éclaire sur toute la longueur, ce qui la rend idéale au-dessus d'un miroir, d'un tableau ou d'une console. Une silhouette élégante pour une entrée, un salon, une chambre ou un couloir.",
             ar: "قضيب ضوئي أفقي طويل بلمسة ذهبية، يحمله ذراعان منحنيان مثبّتان على قاعدة مستطيلة من اللون نفسه. يوزّع إضاءة ناعمة ومتجانسة على طوله كله، فيناسب أعلى المرآة أو اللوحة أو طاولة الكونسول. تصميم أنيق يليق بالمدخل والصالون وغرفة النوم والممر.",
@@ -65,7 +65,7 @@ var ASY_PRODUCTS = [
     {
         id: 7, cat: "artistique", spec: "int", price: "6 000 DA", badge: "bestseller",
         images: ["Products/662135107_964581366532080_4597379214441569486_n.jpg"],
-        name: { fr: "Applique Main Doree Globe", ar: "أبليك يد ذهبية", en: "Golden Hand Globe Sconce" },
+        name: { fr: "Applique Main Dorée Globe", ar: "أبليك يد ذهبية", en: "Golden Hand Globe Sconce" },
         desc: {
             fr: "Une main à finition dorée brillante, doigts ouverts vers le haut, qui présente un globe blanc laiteux comme un bijou. Les reflets miroir du doré contrastent joliment avec la lumière douce du globe allumé. Une applique artistique et audacieuse pour donner du caractère à un salon, une entrée ou un couloir.",
             ar: "يد بلمسة ذهبية لامعة، أصابعها مفتوحة نحو الأعلى، تقدّم كرة بيضاء حليبية كأنها جوهرة. تتناغم انعكاسات الذهبي البرّاقة مع الضوء الناعم المنبعث من الكرة. إضاءة جدارية فنية جريئة تمنح الصالون أو المدخل أو الممر طابعًا مميّزًا.",
@@ -75,7 +75,7 @@ var ASY_PRODUCTS = [
     {
         id: 8, cat: "decorative", spec: "int", price: "5 800 DA",
         images: ["Products/662188343_964582196531997_3727780789698678371_n.jpg"],
-        name: { fr: "Applique Cristal Ruban Or", ar: "أبليك كريستال شريط ذهبي", en: "Gold Ribbon Crystal Sconce" },
+        name: { fr: "Applique Ruban Spirale Or", ar: "أبليك شريط حلزوني ذهبي", en: "Gold Spiral Ribbon Sconce" },
         desc: {
             fr: "Un ruban à finition dorée brillante qui s'enroule en spirale autour d'une platine verticale, avec une bande lumineuse continue sur sa face intérieure. Allumée, la spirale dessine une ligne de lumière douce et fluide, que le doré reflète tout du long. Une pièce décorative pleine de mouvement pour un salon, une entrée, un escalier ou une chambre.",
             ar: "شريط بلمسة ذهبية لامعة يلتفّ حلزونيًا حول قاعدة عمودية، ويمتدّ على وجهه الداخلي خط ضوئي متّصل. عند تشغيلها يرسم الحلزون خطًا من الضوء الناعم المتدفّق تعكسه اللمسة الذهبية على طوله. قطعة ديكور مفعمة بالحركة تناسب الصالون أو المدخل أو الدرج أو غرفة النوم.",
@@ -85,7 +85,7 @@ var ASY_PRODUCTS = [
     {
         id: 9, cat: "led", spec: "both", price: "4 800 DA",
         images: ["Products/662189938_964582956531921_6168745706088512068_n.jpg"],
-        name: { fr: "Applique LED Geometrique Losange", ar: "أبليك LED معيني", en: "LED Diamond Geometric Sconce" },
+        name: { fr: "Applique LED Géométrique Losange", ar: "أبليك LED معيني", en: "LED Diamond Geometric Sconce" },
         desc: {
             fr: "Un panneau transparent gravé de contours en forme de diamant, orné d'un fin motif de points et d'une barre centrale à finition dorée. La lumière chaude s'échappe vers le haut et vers le bas et projette sur le mur de grands faisceaux en losanges, pour un effet graphique saisissant. À installer dans un salon, un couloir ou un escalier, mais aussi à l'extérieur pour mettre en valeur une façade ou une entrée.",
             ar: "لوح شفّاف محفور بخطوط على شكل ماسة، تزيّنه نقاط دقيقة ويتوسّطه قضيب بلمسة ذهبية. تنبعث الإضاءة الدافئة نحو الأعلى والأسفل فترسم على الجدار حُزمًا ضوئية واسعة على شكل معيّنات، في تأثير هندسي لافت. تناسب الصالون والممر والدرج، كما يمكن تركيبها في الخارج لإبراز الواجهة أو المدخل.",
@@ -95,7 +95,7 @@ var ASY_PRODUCTS = [
     {
         id: 10, cat: "led", spec: "int", price: "4 200 DA",
         images: ["Products/662235734_964582336531983_6618653074204394511_n.jpg"],
-        name: { fr: "Applique LED Cristal Cylindre", ar: "أبليك LED كريستال أسطواني", en: "LED Crystal Cylinder Sconce" },
+        name: { fr: "Applique Liseuse Noire", ar: "أبليك قراءة أسود", en: "Black Reading Sconce" },
         desc: {
             fr: "Une applique de chevet noir mat qui réunit deux éclairages : en haut, un disque lumineux diffuse une lumière chaude et enveloppante ; en bas, un spot de lecture cylindrique incliné concentre la lumière là où l'on en a besoin. Deux petits interrupteurs sont intégrés à la platine. Idéale en tête de lit dans une chambre, ou pour un coin lecture dans le salon.",
             ar: "إضاءة جدارية لجانب السرير بلون أسود مطفأ تجمع بين إنارتين: في الأعلى قرص مضيء ينشر ضوءًا دافئًا ناعمًا، وفي الأسفل كشّاف قراءة أسطواني مائل يركّز الضوء حيث تحتاجه. وقد زُوّدت القاعدة بمفتاحين صغيرين. مناسبة لرأس السرير في غرفة النوم أو لركن القراءة في الصالون.",
@@ -105,7 +105,7 @@ var ASY_PRODUCTS = [
     {
         id: 11, cat: "classique", spec: "int", price: "4 000 DA",
         images: ["Products/662355147_964583289865221_8593786777519565021_n.jpg"],
-        name: { fr: "Applique Classique Laiton", ar: "أبليك نحاسي كلاسيكي", en: "Classic Brass Sconce" },
+        name: { fr: "Applique Anneau LED Doré", ar: "أبليك حلقة LED ذهبية", en: "Gold LED Ring Sconce" },
         desc: {
             fr: "Un anneau lumineux au dessin épuré : la moitié haute diffuse une lumière blanche et uniforme, la moitié basse arbore une finition dorée qui rejoint une platine rectangulaire assortie. Sur cette platine, un petit panneau de commande porte des boutons marche/arrêt, + et −. Une applique moderne qui trouve naturellement sa place dans un salon, une chambre ou un couloir.",
             ar: "حلقة مضيئة بتصميم بسيط وأنيق: نصفها العلوي يبعث ضوءًا أبيض متجانسًا، ونصفها السفلي بلمسة ذهبية يتصل بقاعدة مستطيلة من اللون نفسه. تضمّ القاعدة لوحة تحكم صغيرة بأزرار للتشغيل والإطفاء و«+» و«−». قطعة عصرية تنسجم بسهولة مع الصالون أو غرفة النوم أو الممر.",
@@ -115,7 +115,7 @@ var ASY_PRODUCTS = [
     {
         id: 12, cat: "decorative", spec: "int", price: "6 500 DA", badge: "premium",
         images: ["Products/662375647_964581536532063_4214740935727736516_n.jpg"],
-        name: { fr: "Applique Cristal Spirale Or", ar: "أبليك كريستال حلزوني ذهبي", en: "Gold Spiral Crystal Sconce" },
+        name: { fr: "Applique Main Dorée Paume", ar: "أبليك يد ذهبية مفتوحة", en: "Golden Palm Hand Sconce" },
         desc: {
             fr: "Une main sculptée à la finition dorée brillante, doigts ouverts, qui tient délicatement un globe blanc laiteux. Allumé, le globe diffuse une lumière douce tandis que les reflets de la main animent le mur. Une pièce artistique qui attire le regard dans une entrée, un salon ou un couloir.",
             ar: "يد منحوتة بلمسة ذهبية لامعة، أصابعها مفتوحة تحتضن برفق كرة بيضاء حليبية اللون. عند الإضاءة تنشر الكرة نورًا هادئًا، فيما تضفي انعكاسات اليد الذهبية حيوية على الجدار. قطعة فنية تلفت الأنظار في المدخل أو الصالون أو الممر.",
@@ -125,7 +125,7 @@ var ASY_PRODUCTS = [
     {
         id: 13, cat: "classique", spec: "int", price: "3 500 DA",
         images: ["Products/662877554_964582669865283_8855418817131032716_n.jpg"],
-        name: { fr: "Applique Murale Boule Argent", ar: "أبليك كرة فضية", en: "Silver Globe Wall Sconce" },
+        name: { fr: "Applique Sablier Haut-Bas", ar: "أبليك ساعة رملية بإضاءة مزدوجة", en: "Up & Down Hourglass Sconce" },
         desc: {
             fr: "Une applique à la silhouette galbée, resserrée en son centre comme un sablier, présentée ici en finition dorée et en noir. Elle projette la lumière vers le haut et vers le bas, dessinant sur le mur deux faisceaux chaleureux aux contours nets. Elle rythme joliment un couloir ou une cage d'escalier, et encadre avec élégance une tête de lit dans une chambre.",
             ar: "إضاءة جدارية بقوام منحنٍ يضيق في وسطه كالساعة الرملية، معروضة هنا بلونين: الذهبي والأسود. توجّه الضوء نحو الأعلى والأسفل، فترسم على الجدار حزمتين دافئتين بحواف واضحة. تضفي إيقاعًا جميلًا على الممر أو الدرج، وتحيط بسرير غرفة النوم بلمسة أنيقة.",
@@ -135,7 +135,7 @@ var ASY_PRODUCTS = [
     {
         id: 14, cat: "led", spec: "int", price: "3 800 DA",
         images: ["Products/662933092_964583036531913_5430809172069410371_n.jpg"],
-        name: { fr: "Applique LED Barre Noire", ar: "أبليك LED شريط أسود", en: "Black LED Bar Sconce" },
+        name: { fr: "Applique 5 Tubes Or & Noir", ar: "أبليك 5 أنابيب ذهبي وأسود", en: "Gold & Black 5-Tube Sconce" },
         desc: {
             fr: "Cinq tubes noirs de longueurs différentes, montés en décalé sur une barre horizontale, chacun terminé à ses deux extrémités par un embout lumineux. L'ensemble forme une composition graphique ponctuée de points de lumière blanche, avec un léger halo sur le mur. Sur la photo, la version noire est présentée à côté de sa déclinaison dorée ; elle convient à un salon, une entrée ou un couloir au style contemporain.",
             ar: "خمسة أنابيب سوداء بأطوال متفاوتة، مثبتة بشكل متدرّج على قاعدة أفقية، ولكل أنبوب طرفان مضيئان. تشكّل معًا تكوينًا هندسيًا لافتًا تتخلله نقاط من الضوء الأبيض، مع هالة خفيفة على الجدار. تظهر النسخة السوداء في الصورة إلى جانب نسختها الذهبية، وتناسب الصالون أو المدخل أو الممر ذا الطابع العصري.",
@@ -145,7 +145,7 @@ var ASY_PRODUCTS = [
     {
         id: 15, cat: "led", spec: "int", price: "4 000 DA",
         images: ["Products/663072230_964583076531909_5454792028482091568_n.jpg"],
-        name: { fr: "Applique LED Double Barre", ar: "أبليك LED شريط مزدوج", en: "Double LED Bar Sconce" },
+        name: { fr: "Applique 5 Tubes Dorée", ar: "أبليك 5 أنابيب ذهبي", en: "Gold 5-Tube Sconce" },
         desc: {
             fr: "Cinq tubes à la finition dorée, de hauteurs différentes, fixés en décalé sur une barre horizontale assortie. Chaque tube s'illumine à ses deux extrémités, ce qui crée un jeu de points lumineux vers le haut et vers le bas et un halo doux sur le mur. Une applique élégante et graphique pour un salon, une entrée ou le long d'un couloir.",
             ar: "خمسة أنابيب بلمسة ذهبية وبارتفاعات مختلفة، مثبتة بشكل متدرّج على قاعدة أفقية من اللون نفسه. يضيء كل أنبوب من طرفيه، فتتوزع نقاط الضوء نحو الأعلى والأسفل مع هالة ناعمة على الجدار. إضاءة جدارية أنيقة بطابع هندسي تناسب الصالون أو المدخل أو الممر.",
@@ -155,7 +155,7 @@ var ASY_PRODUCTS = [
     {
         id: 16, cat: "led", spec: "both", price: "3 600 DA",
         images: ["Products/663242075_964583206531896_7729218085022407988_n.jpg"],
-        name: { fr: "Applique LED Rectangulaire", ar: "أبليك LED مستطيل", en: "Rectangular LED Sconce" },
+        name: { fr: "Applique 5 Tubes Noire", ar: "أبليك 5 أنابيب أسود", en: "Black 5-Tube Sconce" },
         desc: {
             fr: "Une applique à la finition noire composée de cinq tubes de longueurs variées, montés en décalé sur une barre horizontale. Leurs extrémités lumineuses, en haut comme en bas, dessinent une silhouette verticale rythmée qui se détache nettement sur un mur clair. Un choix contemporain pour un salon, une entrée, un couloir ou une cage d'escalier.",
             ar: "إضاءة جدارية سوداء تتكوّن من خمسة أنابيب بأطوال متنوعة، مثبتة بشكل متدرّج على قاعدة أفقية. أطرافها المضيئة في الأعلى والأسفل ترسم شكلًا عموديًا متناسقًا يبرز بوضوح على الجدران الفاتحة. خيار عصري للصالون أو المدخل أو الممر أو الدرج.",
@@ -175,7 +175,7 @@ var ASY_PRODUCTS = [
     {
         id: 18, cat: "decorative", spec: "int", price: "5 200 DA",
         images: ["Products/663322400_964583399865210_259164777113537625_n.jpg"],
-        name: { fr: "Applique Plume Or LED", ar: "أبليك ريشة ذهبية LED", en: "Gold Feather LED Sconce" },
+        name: { fr: "Applique Collier de Perles Lumineuses", ar: "أبليك عقد لآلئ مضيئة", en: "Glowing Pearl Necklace Sconce" },
         desc: {
             fr: "Tel un collier de perles, cette applique porte une rangée de globes blancs lumineux, séparés par de petites perles dorées et suspendus à deux fines tiges reliées à une platine ronde à la finition dorée. Les globes diffusent une lumière blanche douce et régulière. La photo montre aussi une version noire ; une pièce décorative qui habille un mur de salon, de chambre ou d'entrée.",
             ar: "على هيئة عقد من اللؤلؤ، تحمل هذه الإضاءة الجدارية سلسلة من الكرات البيضاء المضيئة تفصل بينها حبات ذهبية صغيرة، معلّقة بقضيبين رفيعين يتصلان بقاعدة دائرية بلمسة ذهبية. تنشر الكرات ضوءًا أبيض ناعمًا ومتجانسًا. تُظهر الصورة أيضًا نسخة سوداء، وهي قطعة ديكور تزيّن جدار الصالون أو غرفة النوم أو المدخل.",
@@ -205,7 +205,7 @@ var ASY_PRODUCTS = [
     {
         id: 21, cat: "led", spec: "int", price: "4 800 DA",
         images: ["Products/666111635_964581426532074_2743584886324193133_n.jpg"],
-        name: { fr: "Applique LED Anneau Noir", ar: "أبليك LED حلقة سوداء", en: "Black Ring LED Sconce" },
+        name: { fr: "Applique Main Noire Levée", ar: "أبليك يد سوداء مرفوعة", en: "Raised Black Hand Sconce" },
         desc: {
             fr: "Une main sculptée à la finition noire mate sort du mur et soutient délicatement un globe blanc opalin. Allumé, le globe diffuse une lumière douce et enveloppante, tandis que la silhouette de la main apporte une touche artistique singulière. Une belle façon de donner du caractère à un salon, une entrée ou un couloir.",
             ar: "يدٌ منحوتة بلون أسود غير لامع تمتدّ من الجدار لتحمل برفقٍ كرةً بيضاء حليبية. عند الإضاءة تنشر الكرة نورًا ناعمًا يغمر المكان، فيما يضفي شكل اليد لمسة فنية لافتة. خيار جميل لإضفاء طابع شخصي على الصالون أو المدخل أو الرواق.",
@@ -215,7 +215,7 @@ var ASY_PRODUCTS = [
     {
         id: 22, cat: "artistique", spec: "int", price: "4 200 DA",
         images: ["Products/666183535_964582429865307_3599050698505953145_n.jpg"],
-        name: { fr: "Applique Boule Doree Murale", ar: "أبليك كرة ذهبية", en: "Golden Globe Wall Sconce" },
+        name: { fr: "Applique Liseuse Noire Lumière Blanche", ar: "أبليك قراءة أسود بضوء أبيض", en: "Black Reading Sconce, White Light" },
         desc: {
             fr: "Applique au design contemporain à finition noire : une platine verticale porte en partie haute un disque lumineux qui diffuse une lumière blanche vers le haut et vers le bas du mur, et plus bas un bras cylindrique terminé par un petit spot de lecture. Deux interrupteurs sont intégrés directement à la platine. Parfaite en tête de lit dans une chambre, ou près d'un fauteuil de lecture au salon.",
             ar: "مصباح جداري بتصميم عصري ولون أسود: لوحة عمودية تحمل في أعلاها قرصًا مضيئًا ينشر ضوءًا أبيض نحو أعلى الجدار وأسفله، وفي أسفلها ذراعٌ أسطوانية تنتهي ببقعة ضوء صغيرة مخصّصة للقراءة. وقد زُوّدت اللوحة بمفتاحَي تشغيل مدمجين. مناسب جدًا بجانب السرير في غرفة النوم، أو قرب كرسي القراءة في الصالون.",
@@ -225,7 +225,7 @@ var ASY_PRODUCTS = [
     {
         id: 23, cat: "classique", spec: "int", price: "4 500 DA",
         images: ["Products/666489794_964573399866210_8420417276701669506_n.jpg"],
-        name: { fr: "Applique Eclairage Tableau Or", ar: "أبليك إضاءة لوحة ذهبي", en: "Gold Picture Light Sconce" },
+        name: { fr: "Applique Éclairage Tableau Or", ar: "أبليك إضاءة لوحة ذهبي", en: "Gold Picture Light Sconce" },
         desc: {
             fr: "Une applique pour tableau à la finition dorée : une longue réglette fine, dotée d'un diffuseur blanc sur toute sa longueur, s'avance au-dessus du cadre grâce à deux bras incurvés. Pensée pour mettre en valeur un tableau, un miroir ou une photo encadrée, elle apporte une note élégante à votre mur. Elle trouve sa place au salon, dans un couloir ou dans une entrée.",
             ar: "مصباح جداري مخصّص لإنارة اللوحات بلمسة ذهبية: شريط طويل ورفيع بغطاء أبيض على امتداده، يمتدّ فوق الإطار بواسطة ذراعين مقوّستين. صُمّم ليُبرز لوحاتكم أو مراياكم أو صوركم المؤطّرة ويمنح الجدار حضورًا أنيقًا. يليق بالصالون والرواق والمدخل.",
@@ -235,7 +235,7 @@ var ASY_PRODUCTS = [
     {
         id: 24, cat: "led", spec: "int", price: "5 200 DA", badge: "new",
         images: ["Products/666526631_964580673198816_6688133335723400980_n.jpg"],
-        name: { fr: "Applique LED Anneau Tactile", ar: "أبليك LED حلقة باللمس", en: "Touch Ring LED Sconce" },
+        name: { fr: "Applique Torsade à Bulles Or", ar: "أبليك ملتوٍ بفقاعات ذهبي", en: "Gold Bubble Twist Sconce" },
         desc: {
             fr: "Un diffuseur transparent, parsemé de fines bulles, s'enroule en torsade au-dessus et au-dessous d'une bague centrale à finition dorée finement striée. Allumée, l'applique fait scintiller ces petites bulles et souligne ses contours d'un liseré lumineux, pour une ambiance raffinée. Elle trouve naturellement sa place dans un salon, une chambre ou le long d'un escalier.",
             ar: "غطاء شفاف مرصّع بفقاعات دقيقة يلتفّ بشكل حلزوني فوق حلقة مركزية ذهبية اللون ذات خطوط ناعمة وتحتها. عند الإضاءة تتلألأ هذه الفقاعات وتتوهّج حوافّ الغطاء بخطّ رفيع من النور، فتضفي على المكان أجواءً راقية. يجد مكانه بسهولة في الصالون أو غرفة النوم أو على امتداد الدرج.",
@@ -245,7 +245,7 @@ var ASY_PRODUCTS = [
     {
         id: 25, cat: "decorative", spec: "int", price: "6 200 DA", badge: "premium",
         images: ["Products/666624621_964581953198688_5833031665386046773_n.jpg"],
-        name: { fr: "Applique Cristal Torsade Or", ar: "أبليك كريستال ملتوي ذهبي", en: "Gold Twist Crystal Sconce" },
+        name: { fr: "Applique Deux Mains Dorées", ar: "أبليك يدان ذهبيتان", en: "Two Golden Hands Sconce" },
         desc: {
             fr: "Deux mains sculptées à la finition dorée brillante, aux reflets miroir, recueillent un globe blanc opalin comme un trésor. Le globe diffuse une lumière douce et apaisante, tandis que la surface dorée capte et renvoie la lumière autour d'elle. Une pièce décorative affirmée, qui crée un vrai point focal dans un salon, une entrée ou un couloir.",
             ar: "يدان منحوتتان بلون ذهبي لامع كالمرآة تحتضنان كرةً بيضاء حليبية كأنها كنز ثمين. تنشر الكرة ضوءًا ناعمًا وهادئًا، بينما يعكس السطح الذهبي بريق النور من حولها. قطعة ديكور جريئة تمنح الصالون أو المدخل أو الرواق نقطة جذب حقيقية.",
@@ -255,7 +255,7 @@ var ASY_PRODUCTS = [
     {
         id: 26, cat: "led", spec: "both", price: "5 000 DA",
         images: ["Products/666677715_964574586532758_2147664094945029877_n.jpg"],
-        name: { fr: "Applique LED Trio Geometrique", ar: "أبليك LED ثلاثي هندسي", en: "Geometric Trio LED Sconce" },
+        name: { fr: "Applique LED Projection Vagues", ar: "أبليك LED بإسقاط موجي", en: "Wave Projection LED Sconce" },
         desc: {
             fr: "Un panneau transparent finement gravé, traversé en son centre par une barre à finition dorée, projette sur le mur des faisceaux de lumière chaude vers le haut et vers le bas, qui dessinent de véritables motifs géométriques. La photo présente trois découpes : pointes en zigzag, vagues et ovale arrondi. À l'intérieur, elle anime un salon, un couloir ou une cage d'escalier ; à l'extérieur, elle met en valeur une entrée ou une façade.",
             ar: "لوحة شفافة بنقوش دقيقة يتوسّطها قضيبٌ ذهبي اللون، ترسم على الجدار حزمًا من الضوء الدافئ نحو الأعلى والأسفل على شكل زخارف هندسية لافتة. تعرض الصورة ثلاثة تصاميم: حوافّ متعرّجة، وتموّجات، وشكل بيضاوي. في الداخل تبعث الحيوية في الصالون أو الرواق أو الدرج، وفي الخارج تُبرز المدخل أو واجهة المنزل.",
@@ -265,7 +265,7 @@ var ASY_PRODUCTS = [
     {
         id: 27, cat: "decorative", spec: "int", price: "3 800 DA",
         images: ["Products/666834022_964582249865325_345763148090551886_n.jpg"],
-        name: { fr: "Applique Demi-Lune Doree", ar: "أبليك نصف قمر ذهبي", en: "Golden Half-Moon Sconce" },
+        name: { fr: "Applique Liseuse Noire Lumière Chaude", ar: "أبليك قراءة أسود بضوء دافئ", en: "Black Reading Sconce, Warm Light" },
         desc: {
             fr: "Applique de lecture à la finition noire : une platine verticale surmontée d'un disque lumineux à la lueur chaude et dorée, complétée par un bras cylindrique qui se termine par un petit spot. Deux interrupteurs discrets sont intégrés à la platine. Une ambiance douce et cosy, idéale en tête de lit dans une chambre ou à côté d'un canapé pour lire au salon.",
             ar: "مصباح جداري للقراءة باللون الأسود: لوحة عمودية يعلوها قرص مضيء بضوء دافئ يميل إلى الذهبي، وتكمّلها ذراع أسطوانية تنتهي ببقعة ضوء صغيرة. وقد دُمج في اللوحة مفتاحا تشغيل بشكل أنيق. يمنح أجواءً هادئة ودافئة، وهو مثالي بجانب السرير في غرفة النوم أو قرب الأريكة للقراءة في الصالون.",
@@ -275,7 +275,7 @@ var ASY_PRODUCTS = [
     {
         id: 28, cat: "led", spec: "int", price: "4 800 DA",
         images: ["Products/666984601_964573919866158_5786421101155669582_n.jpg"],
-        name: { fr: "Applique Lineaire Or Noir", ar: "أبليك خطي ذهبي وأسود", en: "Gold & Black Linear Sconce" },
+        name: { fr: "Applique Linéaire Or Noir", ar: "أبليك خطي ذهبي وأسود", en: "Gold & Black Linear Sconce" },
         desc: {
             fr: "Deux fines tiges à la finition dorée encadrent une barre lumineuse blanche, le tout réuni au centre par un bloc carré noir. La lumière chaude se diffuse le long de la barre et dessine un halo doux sur le mur. Une ligne verticale élégante qui habille une tête de lit, un salon ou un couloir.",
             ar: "قضيبان رفيعان بلون ذهبي يحيطان بشريط مضيء أبيض، تجمعها في الوسط كتلة سوداء مربّعة. ينساب الضوء الدافئ على طول الشريط ليرسم هالة ناعمة على الجدار. خطّ عمودي أنيق يزيّن رأس السرير أو الصالون أو الرواق.",
@@ -285,7 +285,7 @@ var ASY_PRODUCTS = [
     {
         id: 29, cat: "led", spec: "ext", price: "5 500 DA",
         images: ["Products/667730572_964574116532805_2471196322789748512_n.jpg"],
-        name: { fr: "Applique Exterieur Moderne", ar: "أبليك خارجي عصري", en: "Modern Outdoor Sconce" },
+        name: { fr: "Applique Extérieur Moderne", ar: "أبليك خارجي عصري", en: "Modern Outdoor Sconce" },
         desc: {
             fr: "Applique d'extérieur aux lignes architecturales, à la finition gris foncé : un socle carré prolongé par une colonne à gradins, coiffée d'une tête plate et large dont le diffuseur répand une lumière chaude sur le mur. Elle souligne joliment une porte d'entrée ou une façade, et accueille vos invités dès la tombée de la nuit.",
             ar: "مصباح جداري خارجي بخطوط معمارية ولون رمادي داكن: قاعدة مربّعة يعلوها عمود متدرّج ينتهي برأس مسطّح عريض ينشر ضوءًا دافئًا على الجدار. يُبرز بأناقة باب المدخل أو واجهة المنزل، ويستقبل ضيوفكم مع حلول المساء.",
