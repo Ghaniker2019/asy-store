@@ -84,7 +84,7 @@
         .header .container { display: flex; justify-content: space-between; align-items: center; }
 
         .logo { display: flex; align-items: center; gap: 4px; text-decoration: none; }
-        .logo svg { height: 44px; width: auto; }
+        .logo svg { height: 44px; width: auto; direction: ltr; } /* in RTL the "tore" text would be drawn leftwards, over the S */
 
         .header-right { display: flex; align-items: center; gap: 20px; }
 
@@ -1216,10 +1216,10 @@
             const titles = { fr: "ASY Store | Appliques Murales Premium - Alger", ar: "ASY Store | \u0623\u0628\u0644\u064a\u0643\u0627\u062a \u062c\u062f\u0627\u0631\u064a\u0629 \u0641\u0627\u062e\u0631\u0629 - \u0627\u0644\u062c\u0632\u0627\u0626\u0631", en: "ASY Store | Premium Wall Sconces - Algiers" };
             document.title = titles[lang];
 
-            // Translate all data-i18n elements
+            // Translate all data-i18n elements (an empty translation is intentional: it must clear the text)
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (T[lang] && T[lang][key]) {
+                if (T[lang] && T[lang][key] !== undefined) {
                     el.textContent = T[lang][key].replace('{YEAR}', new Date().getFullYear());
                 }
             });
