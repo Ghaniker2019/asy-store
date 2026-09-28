@@ -5,10 +5,13 @@
 
     var MAX_QTY = 10;
 
-    // "4 500 DA" -> 4500 ; "Sur demande" -> null
+    // "4 500 DA" -> 4500 ; "Sur demande" -> null. Prices are free text in the admin:
+    // cents are dropped, and anything that is not a single amount (a range...) counts as "on request".
     function parsePrice(price) {
-        var digits = String(price == null ? '' : price).replace(/\D/g, '');
-        return digits ? parseInt(digits, 10) : null;
+        var s = String(price == null ? '' : price).replace(/[.,]\d{1,2}(?!\d)/g, '');
+        var numbers = s.match(/\d{1,3}(?:[ .  ]\d{3})+(?!\d)|\d+/g);
+        if (!numbers || numbers.length !== 1) return null;
+        return parseInt(numbers[0].replace(/\D/g, ''), 10);
     }
 
     // 13500 -> "13 500 DA"

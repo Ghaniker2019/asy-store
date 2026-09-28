@@ -58,7 +58,7 @@ ils sont utilisés ; sinon repli sur `imageUrl` et pas de description.
 - Panier vide : récapitulatif « Votre panier est vide » + lien vers les produits ; boutons
   d'envoi désactivés.
 - « Envoyer la commande » (formsubmit, inchangé côté service) : champs cachés
-  `Commande` (une ligne par article : `2 × Nom FR (réf. 12) — 4 500 DA`) et `Total`.
+  `Commande` (une ligne par article : `2 × Nom FR (réf. 12) : 9 000 DA`, montant de la ligne) et `Total`.
   Noms en français dans l'e-mail, quelle que soit la langue du site.
 - Retour `?success=1` : toast existant + vidage du panier.
 - « Commander via WhatsApp » : ouvre `https://wa.me/213556877546?text=…` avec salutation,

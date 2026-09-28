@@ -517,12 +517,12 @@
             display: flex; flex-direction: column;
             transform: translateX(100%); visibility: hidden; transition: transform 0.35s ease, visibility 0.35s;
         }
-        .cart-drawer.active { transform: translateX(0); visibility: visible; }
+        .cart-drawer.active { transform: translateX(0); visibility: visible; transition: transform 0.35s ease, visibility 0s; } /* visible at once so the close button can take focus */
         html[dir="rtl"] .cart-drawer { right: auto; left: 0; transform: translateX(-100%); box-shadow: 20px 0 60px rgba(0,0,0,0.12); }
         html[dir="rtl"] .cart-drawer.active { transform: translateX(0); }
         .cart-head { position: relative; padding: 24px 24px 20px; border-bottom: 1px solid var(--border); }
         .cart-head h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; }
-        .cart-head .modal-close { top: 20px; }
+        .cart-head .modal-close { top: 20px; transition-property: border-color, color; } /* not visibility: must be focusable at once */
         .cart-lines { flex: 1; overflow-y: auto; padding: 0 24px; }
         .cart-line { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); }
         .cart-line img { width: 64px; height: 64px; object-fit: cover; border-radius: var(--radius); background: #f0ece6; }
@@ -905,7 +905,7 @@
 
     <!-- ══════════ CART DRAWER ══════════ -->
     <div class="cart-backdrop" id="cartBackdrop"></div>
-    <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-labelledby="cartTitle" aria-hidden="true">
+    <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
         <div class="cart-head">
             <h3 id="cartTitle" data-i18n="cart_title">Mon panier</h3>
             <button class="modal-close" id="cartClose" aria-label="Fermer" data-i18n-aria="product_close">
@@ -1040,7 +1040,7 @@
                 cart_on_request: "+ articles au prix sur demande",
                 cart_checkout: "Valider la commande", cart_edit: "Modifier le panier",
                 cart_remove: "Retirer", cart_added: "Ajouté au panier",
-                btn_add_cart: "Ajouter au panier", btn_buy_now: "Acheter",
+                btn_add_cart: "Ajouter au panier", btn_buy_now: "Acheter", qty_less: "Diminuer la quantité", qty_more: "Augmenter la quantité",
                 product_close: "Fermer", product_prev: "Photo précédente", product_next: "Photo suivante",
                 ref_label: "réf.", order_summary: "Votre commande", order_via_whatsapp: "Commander via WhatsApp",
                 // WhatsApp
@@ -1091,7 +1091,7 @@
                 cart_on_request: "+ \u0645\u0646\u062a\u062c\u0627\u062a \u0633\u0639\u0631\u0647\u0627 \u0639\u0646\u062f \u0627\u0644\u0637\u0644\u0628",
                 cart_checkout: "\u062a\u0623\u0643\u064a\u062f \u0627\u0644\u0637\u0644\u0628", cart_edit: "\u062a\u0639\u062f\u064a\u0644 \u0627\u0644\u0633\u0644\u0629",
                 cart_remove: "\u062d\u0630\u0641", cart_added: "\u062a\u0645\u062a \u0627\u0644\u0625\u0636\u0627\u0641\u0629 \u0625\u0644\u0649 \u0627\u0644\u0633\u0644\u0629",
-                btn_add_cart: "\u0623\u0636\u0641 \u0625\u0644\u0649 \u0627\u0644\u0633\u0644\u0629", btn_buy_now: "\u0627\u0634\u062a\u0631\u0650 \u0627\u0644\u0622\u0646",
+                btn_add_cart: "\u0623\u0636\u0641 \u0625\u0644\u0649 \u0627\u0644\u0633\u0644\u0629", btn_buy_now: "\u0627\u0634\u062a\u0631\u0650 \u0627\u0644\u0622\u0646", qty_less: "إنقاص الكمية", qty_more: "زيادة الكمية",
                 product_close: "\u0625\u063a\u0644\u0627\u0642", product_prev: "\u0627\u0644\u0635\u0648\u0631\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629", product_next: "\u0627\u0644\u0635\u0648\u0631\u0629 \u0627\u0644\u062a\u0627\u0644\u064a\u0629",
                 ref_label: "\u0645\u0631\u062c\u0639", order_summary: "\u0637\u0644\u0628\u0643", order_via_whatsapp: "\u0627\u0637\u0644\u0628 \u0639\u0628\u0631 \u0648\u0627\u062a\u0633\u0627\u0628",
                 wa_label: "\u0631\u0627\u0633\u0644\u0646\u0627 \u0639\u0644\u0649 \u0648\u0627\u062a\u0633\u0627\u0628", wa_greeting: "\u0645\u0631\u062d\u0628\u0627\u064b ASY Store\u060c \u0644\u062f\u064a \u0633\u0624\u0627\u0644.",
@@ -1141,7 +1141,7 @@
                 cart_on_request: "+ items priced on request",
                 cart_checkout: "Checkout", cart_edit: "Edit cart",
                 cart_remove: "Remove", cart_added: "Added to cart",
-                btn_add_cart: "Add to cart", btn_buy_now: "Buy now",
+                btn_add_cart: "Add to cart", btn_buy_now: "Buy now", qty_less: "Decrease quantity", qty_more: "Increase quantity",
                 product_close: "Close", product_prev: "Previous photo", product_next: "Next photo",
                 ref_label: "ref.", order_summary: "Your order", order_via_whatsapp: "Order via WhatsApp",
                 wa_label: "Chat on WhatsApp", wa_greeting: "Hello ASY Store, I have a question.",
@@ -1154,7 +1154,12 @@
         var useAdmin = false;
         var products = ASY_PRODUCTS.slice();
 
-        let currentLang = localStorage.getItem('asy_lang') || 'fr';
+        var storage = null;
+        try { storage = window.localStorage; } catch (e) { /* storage blocked: nothing is remembered */ }
+        function storageGet(key) { try { return storage.getItem(key); } catch (e) { return null; } }
+
+        let currentLang = storageGet('asy_lang');
+        if (!T[currentLang]) currentLang = 'fr';
 
         // ── DOM ──
         const grid = document.getElementById('productsGrid');
@@ -1189,15 +1194,13 @@
             document.body.style.overflow = open ? 'hidden' : '';
         }
 
-        const currentUrl = window.location.href.split('?')[0];
-        document.getElementById('formNext').value = currentUrl + '?success=1';
 
         // ══════════════════════════════════════════
         // i18n ENGINE
         // ══════════════════════════════════════════
         function setLang(lang) {
             currentLang = lang;
-            localStorage.setItem('asy_lang', lang);
+            try { storage.setItem('asy_lang', lang); } catch (e) { /* not remembered */ }
             const html = document.documentElement;
 
             // Set direction
@@ -1301,7 +1304,9 @@
         }
 
         // ── HTML escape (XSS protection) ──
-        function esc(s) { if (!s) return ''; var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+        function esc(s) {
+            return s == null ? '' : String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
 
         // Prices ("12 000 DA") must stay left-to-right inside Arabic text
         function priceHtml(text) { return '<bdi>' + esc(text) + '</bdi>'; }
@@ -1360,9 +1365,13 @@
         // ══════════════════════════════════════════
         // CART
         // ══════════════════════════════════════════
-        var storage = null;
-        try { storage = window.localStorage; } catch (e) { /* storage blocked: in-memory cart */ }
         var cart = ASYCart.createCart(storage, 'asy_cart');
+        // Another tab changed the cart (or emptied it after sending the order): reload it
+        window.addEventListener('storage', function(e) {
+            if (e.key !== 'asy_cart') return;
+            cart = ASYCart.createCart(storage, 'asy_cart');
+            renderCart();
+        });
         var cartDrawer = document.getElementById('cartDrawer');
         var cartBackdrop = document.getElementById('cartBackdrop');
         var cartToggle = document.getElementById('cartToggle');
@@ -1381,10 +1390,17 @@
 
         function qtyControl(key, qty) {
             return '<div class="qty" data-key="' + esc(key) + '">' +
-                '<button type="button" data-step="-1" aria-label="-"' + (qty <= 1 ? ' disabled' : '') + '>&minus;</button>' +
+                '<button type="button" data-step="-1" aria-label="' + esc(T[currentLang].qty_less) + '"' + (qty <= 1 ? ' disabled' : '') + '>&minus;</button>' +
                 '<span>' + qty + '</span>' +
-                '<button type="button" data-step="1" aria-label="+"' + (qty >= ASYCart.MAX_QTY ? ' disabled' : '') + '>+</button>' +
+                '<button type="button" data-step="1" aria-label="' + esc(T[currentLang].qty_more) + '"' + (qty >= ASYCart.MAX_QTY ? ' disabled' : '') + '>+</button>' +
             '</div>';
+        }
+
+        // Re-rendering a stepper drops the focus: put it back on the same button (or the other one if now disabled)
+        function refocusQty(qtyEl, step) {
+            if (!qtyEl) return;
+            var btn = qtyEl.querySelector('button[data-step="' + step + '"]:not([disabled])') || qtyEl.querySelector('button:not([disabled])');
+            if (btn) btn.focus();
         }
 
         function renderCart() {
@@ -1416,6 +1432,7 @@
         }
 
         function openCart() {
+            closeProduct();
             renderCart();
             toast.classList.remove('show'); // would cover the drawer total
             cartDrawer.classList.add('active');
@@ -1431,6 +1448,7 @@
             cartBackdrop.classList.remove('active');
             cartDrawer.setAttribute('aria-hidden', 'true');
             setOverlay(false);
+            cartToggle.focus({ preventScroll: true });
         }
 
         function addToCart(product, qty) {
@@ -1456,6 +1474,7 @@
                 var item = cart.items().find(function(it) { return it.key === key; });
                 if (item) cart.setQty(key, item.qty + parseInt(step.getAttribute('data-step'), 10));
                 renderCart();
+                refocusQty(document.querySelector('#cartLines .qty[data-key="' + CSS.escape(key) + '"]'), step.getAttribute('data-step'));
                 return;
             }
             var remove = e.target.closest('[data-remove]');
@@ -1495,6 +1514,8 @@
         orderForm.addEventListener('submit', function(e) {
             var lines = cartLines();
             if (!lines.length) { e.preventDefault(); return; }
+            // No #hash here: formsubmit appends ?success=1, which must stay in the query string
+            document.getElementById('formNext').value = window.location.href.split(/[?#]/)[0] + '?success=1';
             var sum = ASYCart.summarize(lines);
             document.getElementById('orderItems').value = ASYCart.formatLines(lines, function(p) { return getProductName(p, 'fr'); }, T.fr.ref_label);
             document.getElementById('orderTotal').value = ASYCart.formatDA(sum.total) + ' ' + T.fr.cart_excl_delivery + (sum.onRequest ? ' ' + T.fr.cart_on_request : '');
@@ -1529,10 +1550,10 @@
         // PRODUCT MODAL
         // ══════════════════════════════════════════
         var productModal = document.getElementById('productModal');
-        var pm = { product: null, images: [], index: 0, qty: 1 };
+        var pm = { product: null, images: [], index: 0, qty: 1, opener: null };
 
         function showPmImage(i) {
-            if (!pm.images.length) return;
+            if (!pm.images.length) { document.getElementById('pmImg').removeAttribute('src'); return; }
             pm.index = (i + pm.images.length) % pm.images.length;
             document.getElementById('pmImg').src = pm.images[pm.index];
             document.querySelectorAll('#pmThumbs button').forEach(function(b, j) { b.classList.toggle('active', j === pm.index); });
@@ -1556,6 +1577,8 @@
         }
 
         function openProduct(product) {
+            closeCart();
+            pm.opener = document.activeElement;
             pm.product = product;
             pm.images = getProductImages(product);
             pm.qty = 1;
@@ -1570,6 +1593,7 @@
             renderPmQty();
             productModal.classList.add('active');
             setOverlay(true);
+            document.getElementById('pmClose').focus();
             history.replaceState(null, '', '#produit-' + encodeURIComponent(getProductKey(product)));
         }
 
@@ -1579,6 +1603,8 @@
             setOverlay(false);
             pm.product = null;
             history.replaceState(null, '', window.location.pathname + window.location.search);
+            if (pm.opener && pm.opener.focus) pm.opener.focus({ preventScroll: true });
+            pm.opener = null;
         }
 
         function openProductFromHash() {
@@ -1601,6 +1627,7 @@
             if (step) {
                 pm.qty = ASYCart.clampQty(pm.qty + parseInt(step.getAttribute('data-step'), 10));
                 renderPmQty();
+                refocusQty(document.querySelector('#pmQty .qty'), step.getAttribute('data-step'));
             }
         });
         document.getElementById('pmAdd').addEventListener('click', function() {
@@ -1679,9 +1706,9 @@
 
         // ── Init ──
         setLang(currentLang);
-        openProductFromHash();
 
         // ── Load products from Firebase (if configured) ──
+        // #produit- links are resolved once the final product list is known
         if (typeof isFirebaseConfigured === 'function' && isFirebaseConfigured()) {
             db.ref('products').once('value').then(function(snapshot) {
                 if (snapshot.exists()) {
@@ -1692,14 +1719,19 @@
                         firebaseProducts.push(p);
                     });
                     if (firebaseProducts.length > 0) {
+                        closeProduct(); // an open sheet would point to a replaced product
                         products = firebaseProducts;
                         useAdmin = true;
                         setLang(currentLang); // re-render with Firebase products
                     }
                 }
+                openProductFromHash();
             }).catch(function() {
                 // Firebase unavailable, keep defaults
+                openProductFromHash();
             });
+        } else {
+            openProductFromHash();
         }
 
     })();

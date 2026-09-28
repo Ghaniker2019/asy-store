@@ -19,6 +19,14 @@ test('parsePrice lit les chiffres et renvoie null sans chiffre', () => {
     assert.equal(C.parsePrice(undefined), null);
 });
 
+test('parsePrice accepte les écritures libres de l’admin, refuse les fourchettes', () => {
+    assert.equal(C.parsePrice('4500 DA'), 4500);
+    assert.equal(C.parsePrice('4.500 DA'), 4500);
+    assert.equal(C.parsePrice('4 500,00 DA'), 4500);
+    assert.equal(C.parsePrice('1 234 567 DA'), 1234567);
+    assert.equal(C.parsePrice('3 000 – 5 000 DA'), null);
+});
+
 test('formatDA groupe les milliers', () => {
     assert.equal(C.formatDA(500), '500 DA');
     assert.equal(C.formatDA(4500), '4 500 DA');
