@@ -926,6 +926,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
     <script src="firebase-init.js"></script>
+    <script src="products.js"></script>
     <script src="cart.js"></script>
 
     <!-- ══════════ JAVASCRIPT ══════════ -->
@@ -1107,70 +1108,9 @@
             }
         };
 
-        // Product names per language
-        const productNames = {
-            fr: [
-                "Applique Abat-jour Classique Or","Applique Abat-jour Chrome","Applique Abat-jour Noir Mat","Applique Classique Double","Applique Bras Dore",
-                "Applique Main Noire Globe","Applique Main Doree Globe","Applique Cristal Ruban Or","Applique LED Geometrique Losange","Applique LED Cristal Cylindre",
-                "Applique Classique Laiton","Applique Cristal Spirale Or","Applique Murale Boule Argent","Applique LED Barre Noire","Applique LED Double Barre",
-                "Applique LED Rectangulaire","Applique Main Noire Paume","Applique Plume Or LED","Applique LED Projection Ovale","Collection Showroom ASY",
-                "Applique LED Anneau Noir","Applique Boule Doree Murale","Applique Eclairage Tableau Or","Applique LED Anneau Tactile","Applique Cristal Torsade Or",
-                "Applique LED Trio Geometrique","Applique Demi-Lune Doree","Applique Lineaire Or Noir","Applique Exterieur Moderne","Applique Plume Triple LED"
-            ],
-            ar: [
-                "\u0623\u0628\u0644\u064a\u0643 \u0643\u0644\u0627\u0633\u064a\u0643\u064a \u0630\u0647\u0628\u064a","\u0623\u0628\u0644\u064a\u0643 \u0643\u0631\u0648\u0645\u064a","\u0623\u0628\u0644\u064a\u0643 \u0623\u0633\u0648\u062f \u0645\u0627\u062a","\u0623\u0628\u0644\u064a\u0643 \u0643\u0644\u0627\u0633\u064a\u0643\u064a \u0645\u0632\u062f\u0648\u062c","\u0623\u0628\u0644\u064a\u0643 \u0630\u0631\u0627\u0639 \u0630\u0647\u0628\u064a",
-                "\u0623\u0628\u0644\u064a\u0643 \u064a\u062f \u0633\u0648\u062f\u0627\u0621","\u0623\u0628\u0644\u064a\u0643 \u064a\u062f \u0630\u0647\u0628\u064a\u0629","\u0623\u0628\u0644\u064a\u0643 \u0643\u0631\u064a\u0633\u062a\u0627\u0644 \u0634\u0631\u064a\u0637 \u0630\u0647\u0628\u064a","\u0623\u0628\u0644\u064a\u0643 LED \u0645\u0639\u064a\u0646\u064a","\u0623\u0628\u0644\u064a\u0643 LED \u0643\u0631\u064a\u0633\u062a\u0627\u0644 \u0623\u0633\u0637\u0648\u0627\u0646\u064a",
-                "\u0623\u0628\u0644\u064a\u0643 \u0646\u062d\u0627\u0633\u064a \u0643\u0644\u0627\u0633\u064a\u0643\u064a","\u0623\u0628\u0644\u064a\u0643 \u0643\u0631\u064a\u0633\u062a\u0627\u0644 \u062d\u0644\u0632\u0648\u0646\u064a \u0630\u0647\u0628\u064a","\u0623\u0628\u0644\u064a\u0643 \u0643\u0631\u0629 \u0641\u0636\u064a\u0629","\u0623\u0628\u0644\u064a\u0643 LED \u0634\u0631\u064a\u0637 \u0623\u0633\u0648\u062f","\u0623\u0628\u0644\u064a\u0643 LED \u0634\u0631\u064a\u0637 \u0645\u0632\u062f\u0648\u062c",
-                "\u0623\u0628\u0644\u064a\u0643 LED \u0645\u0633\u062a\u0637\u064a\u0644","\u0623\u0628\u0644\u064a\u0643 \u064a\u062f \u0633\u0648\u062f\u0627\u0621 \u0645\u0641\u062a\u0648\u062d\u0629","\u0623\u0628\u0644\u064a\u0643 \u0631\u064a\u0634\u0629 \u0630\u0647\u0628\u064a\u0629 LED","\u0623\u0628\u0644\u064a\u0643 LED \u0625\u0633\u0642\u0627\u0637 \u0628\u064a\u0636\u0627\u0648\u064a","\u0645\u062c\u0645\u0648\u0639\u0629 \u0627\u0644\u0645\u0639\u0631\u0636 ASY",
-                "\u0623\u0628\u0644\u064a\u0643 LED \u062d\u0644\u0642\u0629 \u0633\u0648\u062f\u0627\u0621","\u0623\u0628\u0644\u064a\u0643 \u0643\u0631\u0629 \u0630\u0647\u0628\u064a\u0629","\u0623\u0628\u0644\u064a\u0643 \u0625\u0636\u0627\u0621\u0629 \u0644\u0648\u062d\u0629 \u0630\u0647\u0628\u064a","\u0623\u0628\u0644\u064a\u0643 LED \u062d\u0644\u0642\u0629 \u0628\u0627\u0644\u0644\u0645\u0633","\u0623\u0628\u0644\u064a\u0643 \u0643\u0631\u064a\u0633\u062a\u0627\u0644 \u0645\u0644\u062a\u0648\u064a \u0630\u0647\u0628\u064a",
-                "\u0623\u0628\u0644\u064a\u0643 LED \u062b\u0644\u0627\u062b\u064a \u0647\u0646\u062f\u0633\u064a","\u0623\u0628\u0644\u064a\u0643 \u0646\u0635\u0641 \u0642\u0645\u0631 \u0630\u0647\u0628\u064a","\u0623\u0628\u0644\u064a\u0643 \u062e\u0637\u064a \u0630\u0647\u0628\u064a \u0648\u0623\u0633\u0648\u062f","\u0623\u0628\u0644\u064a\u0643 \u062e\u0627\u0631\u062c\u064a \u0639\u0635\u0631\u064a","\u0623\u0628\u0644\u064a\u0643 \u0631\u064a\u0634 \u062b\u0644\u0627\u062b\u064a LED"
-            ],
-            en: [
-                "Classic Gold Shade Sconce","Chrome Shade Sconce","Matte Black Shade Sconce","Double Classic Sconce","Golden Arm Sconce",
-                "Black Hand Globe Sconce","Golden Hand Globe Sconce","Gold Ribbon Crystal Sconce","LED Diamond Geometric Sconce","LED Crystal Cylinder Sconce",
-                "Classic Brass Sconce","Gold Spiral Crystal Sconce","Silver Globe Wall Sconce","Black LED Bar Sconce","Double LED Bar Sconce",
-                "Rectangular LED Sconce","Black Palm Hand Sconce","Gold Feather LED Sconce","Oval LED Projection Sconce","ASY Showroom Collection",
-                "Black Ring LED Sconce","Golden Globe Wall Sconce","Gold Picture Light Sconce","Touch Ring LED Sconce","Gold Twist Crystal Sconce",
-                "Geometric Trio LED Sconce","Golden Half-Moon Sconce","Gold & Black Linear Sconce","Modern Outdoor Sconce","Triple Feather LED Sconce"
-            ]
-        };
-
-        // ── Product Data (Firebase OR hardcoded defaults) ──
+        // ── Product Data (Firebase OR products.js defaults) ──
         var useAdmin = false;
-        var products = [];
-        var defaultProducts = [
-                { id:1, cat:"classique", spec:"int", price:"4 500 DA", img:"Products/660512119_964583239865226_8198389326246780176_n.jpg" },
-                { id:2, cat:"classique", spec:"int", price:"4 200 DA", img:"Products/661454881_964582986531918_5483709476643133918_n.jpg" },
-                { id:3, cat:"classique", spec:"int", price:"4 500 DA", img:"Products/661710772_964583469865203_6823182422207281289_n.jpg" },
-                { id:4, cat:"classique", spec:"int", price:"5 000 DA", img:"Products/661715173_964583323198551_6902706529067766289_n.jpg" },
-                { id:5, cat:"classique", spec:"int", price:"3 800 DA", img:"Products/661861904_964582506531966_2113192358026335988_n.jpg" },
-                { id:6, cat:"artistique", spec:"int", price:"5 500 DA", img:"Products/662009863_964581446532072_569192811422730417_n.jpg" },
-                { id:7, cat:"artistique", spec:"int", price:"6 000 DA", img:"Products/662135107_964581366532080_4597379214441569486_n.jpg", badge:"bestseller" },
-                { id:8, cat:"decorative", spec:"int", price:"5 800 DA", img:"Products/662188343_964582196531997_3727780789698678371_n.jpg" },
-                { id:9, cat:"led", spec:"both", price:"4 800 DA", img:"Products/662189938_964582956531921_6168745706088512068_n.jpg" },
-                { id:10, cat:"led", spec:"int", price:"4 200 DA", img:"Products/662235734_964582336531983_6618653074204394511_n.jpg" },
-                { id:11, cat:"classique", spec:"int", price:"4 000 DA", img:"Products/662355147_964583289865221_8593786777519565021_n.jpg" },
-                { id:12, cat:"decorative", spec:"int", price:"6 500 DA", img:"Products/662375647_964581536532063_4214740935727736516_n.jpg", badge:"premium" },
-                { id:13, cat:"classique", spec:"int", price:"3 500 DA", img:"Products/662877554_964582669865283_8855418817131032716_n.jpg" },
-                { id:14, cat:"led", spec:"int", price:"3 800 DA", img:"Products/662933092_964583036531913_5430809172069410371_n.jpg" },
-                { id:15, cat:"led", spec:"int", price:"4 000 DA", img:"Products/663072230_964583076531909_5454792028482091568_n.jpg" },
-                { id:16, cat:"led", spec:"both", price:"3 600 DA", img:"Products/663242075_964583206531896_7729218085022407988_n.jpg" },
-                { id:17, cat:"artistique", spec:"int", price:"5 500 DA", img:"Products/663284683_964581506532066_7208053677261643621_n.jpg" },
-                { id:18, cat:"decorative", spec:"int", price:"5 200 DA", img:"Products/663322400_964583399865210_259164777113537625_n.jpg" },
-                { id:19, cat:"led", spec:"both", price:"4 500 DA", img:"Products/663373100_964582706531946_6564342833732177354_n.jpg" },
-                { id:20, cat:"classique", spec:"int", price:"Sur demande", img:"Products/665839134_964580653198818_329008676099722200_n.jpg" },
-                { id:21, cat:"led", spec:"int", price:"4 800 DA", img:"Products/666111635_964581426532074_2743584886324193133_n.jpg" },
-                { id:22, cat:"artistique", spec:"int", price:"4 200 DA", img:"Products/666183535_964582429865307_3599050698505953145_n.jpg" },
-                { id:23, cat:"classique", spec:"int", price:"4 500 DA", img:"Products/666489794_964573399866210_8420417276701669506_n.jpg" },
-                { id:24, cat:"led", spec:"int", price:"5 200 DA", img:"Products/666526631_964580673198816_6688133335723400980_n.jpg", badge:"new" },
-                { id:25, cat:"decorative", spec:"int", price:"6 200 DA", img:"Products/666624621_964581953198688_5833031665386046773_n.jpg", badge:"premium" },
-                { id:26, cat:"led", spec:"both", price:"5 000 DA", img:"Products/666677715_964574586532758_2147664094945029877_n.jpg" },
-                { id:27, cat:"decorative", spec:"int", price:"3 800 DA", img:"Products/666834022_964582249865325_345763148090551886_n.jpg" },
-                { id:28, cat:"led", spec:"int", price:"4 800 DA", img:"Products/666984601_964573919866158_5786421101155669582_n.jpg" },
-                { id:29, cat:"led", spec:"ext", price:"5 500 DA", img:"Products/667730572_964574116532805_2471196322789748512_n.jpg" },
-                { id:30, cat:"decorative", spec:"int", price:"7 500 DA", img:"Products/668121146_964573326532884_1466832074354701932_n.jpg", badge:"new" }
-            ];
-        products = defaultProducts.slice();
+        var products = ASY_PRODUCTS.slice();
 
         let currentLang = localStorage.getItem('asy_lang') || 'fr';
 
@@ -1271,18 +1211,32 @@
             renderCart();
         }
 
-        function getProductName(product) {
+        function getProductName(product, lang) {
+            lang = lang || currentLang;
             // Admin products have nameFr/nameAr/nameEn directly
             if (product.nameFr) {
                 var nameMap = { fr: product.nameFr, ar: product.nameAr || product.nameFr, en: product.nameEn || product.nameFr };
-                return nameMap[currentLang] || product.nameFr;
+                return nameMap[lang] || product.nameFr;
             }
-            // Default products use the index-based array
-            return productNames[currentLang][product.id - 1] || '';
+            // Default products (products.js)
+            return (product.name && (product.name[lang] || product.name.fr)) || '';
+        }
+
+        function getProductImages(product) {
+            if (product.images && product.images.length) return product.images;
+            var single = product.imageUrl || product.imgData || product.img;
+            return single ? [single] : [];
         }
 
         function getProductImg(product) {
-            return product.imageUrl || product.imgData || product.img || '';
+            return getProductImages(product)[0] || '';
+        }
+
+        function getProductDesc(product) {
+            // Defaults: desc.{fr,ar,en} ; admin products: descFr/descAr/descEn
+            if (product.desc) return product.desc[currentLang] || product.desc.fr || '';
+            var map = { fr: product.descFr, ar: product.descAr, en: product.descEn };
+            return map[currentLang] || product.descFr || '';
         }
 
         function getBadgeText(badge) {
