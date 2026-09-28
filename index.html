@@ -371,6 +371,26 @@
             cursor: pointer; transition: var(--transition); letter-spacing: 0.5px; margin-top: 8px;
         }
         .btn-submit:hover { box-shadow: 0 8px 30px rgba(67,162,226,0.35); transform: translateY(-2px); }
+        .btn-whatsapp {
+            width: 100%; padding: 15px; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: transparent; color: #1da851; border: 1px solid #25D366; border-radius: var(--radius);
+            font-family: var(--font-body); font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: var(--transition);
+        }
+        .btn-whatsapp:hover { background: #25D366; color: #fff; box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+        .btn-whatsapp svg { width: 20px; height: 20px; }
+        .btn-submit:disabled, .btn-whatsapp:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; transform: none; }
+        .btn-whatsapp:disabled:hover { background: transparent; color: #1da851; }
+
+        .order-summary { background: var(--bg-deep); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 16px 12px; }
+        .order-summary-line { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+        .order-summary-line img { width: 40px; height: 40px; object-fit: cover; border-radius: 8px; }
+        .order-summary-amount { color: var(--gold); font-weight: 600; white-space: nowrap; }
+        .order-summary-total { display: flex; justify-content: space-between; align-items: baseline; padding-top: 12px; }
+        .order-summary-total small { color: var(--text-muted); font-size: 0.72rem; }
+        .order-summary-total strong { font-family: var(--font-display); font-size: 1.3rem; color: var(--gold); }
+        .order-summary-edit { background: none; border: none; color: var(--blue); font-family: var(--font-body); font-size: 0.8rem; cursor: pointer; padding: 8px 0 0; text-decoration: underline; }
+        .order-summary-empty { font-size: 0.85rem; color: var(--text-muted); padding: 8px 0; }
+        .order-summary-empty a { color: var(--blue); }
 
         /* ── ABOUT ── */
         .about { padding: 80px 0; border-top: 1px solid var(--border); }
@@ -421,10 +441,6 @@
         }
         html[dir="rtl"] .modal-close { right: auto; left: 16px; }
         .modal-close:hover { border-color: var(--gold); color: var(--gold); }
-        .modal-product-preview { display: flex; gap: 16px; align-items: center; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .modal-product-preview img { width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius); }
-        .modal-product-preview h4 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; }
-        .modal-product-preview .price { color: var(--gold); font-size: 0.9rem; margin-top: 4px; }
 
         .toast {
             position: fixed; bottom: 100px; right: 32px;
@@ -758,6 +774,12 @@
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" id="formNext">
                         <input type="text" name="_honey" style="display:none">
+                        <input type="hidden" name="Commande" id="orderItems">
+                        <input type="hidden" name="Total" id="orderTotal">
+                        <div class="form-group">
+                            <label data-i18n="order_summary">Votre commande</label>
+                            <div class="order-summary" id="orderSummary"></div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="nom" data-i18n="form_name">Nom complet</label>
@@ -765,7 +787,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="tel" data-i18n="form_phone">Telephone</label>
-                                <input type="tel" id="tel" name="Telephone" placeholder="0X XX XX XX XX" required>
+                                <input type="tel" id="tel" name="Telephone" placeholder="0X XX XX XX XX" pattern="0[5-7]( ?[0-9]){8}" title="Numéro mobile algérien : 05, 06 ou 07 + 8 chiffres" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -776,22 +798,14 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="produit" data-i18n="form_product">Produit souhaite</label>
-                            <select id="produit" name="Produit" required>
-                                <option value="" disabled selected data-i18n="form_product_ph">Choisir le produit</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="quantite" data-i18n="form_qty">Quantite</label>
-                            <select id="quantite" name="Quantite">
-                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5+</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
                             <label for="message" data-i18n="form_message">Message (optionnel)</label>
                             <textarea id="message" name="Message" data-i18n-placeholder="form_message_ph" placeholder="Couleur preferee, question..."></textarea>
                         </div>
-                        <button type="submit" class="btn-submit" data-i18n="form_submit">Envoyer la commande</button>
+                        <button type="submit" class="btn-submit" id="orderSubmit" data-i18n="form_submit">Envoyer la commande</button>
+                        <button type="button" class="btn-whatsapp" id="orderWhatsapp">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            <span data-i18n="order_via_whatsapp">Commander via WhatsApp</span>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -869,48 +883,6 @@
         </div>
     </aside>
 
-    <!-- ══════════ MODAL ══════════ -->
-    <div class="modal-overlay" id="orderModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-            <div class="modal-product-preview" id="modalPreview">
-                <img src="" alt="" id="modalImg">
-                <div><h4 id="modalName"></h4><div class="price" id="modalPrice"></div></div>
-            </div>
-            <form action="https://formsubmit.co/asystore.dz@gmail.com" method="POST" id="modalForm">
-                <input type="hidden" name="_subject" value="Nouvelle commande - ASY Store">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" id="modalFormNext">
-                <input type="text" name="_honey" style="display:none">
-                <input type="hidden" name="Produit" id="modalProduit">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label data-i18n="form_name">Nom complet</label>
-                        <input type="text" name="Nom" data-i18n-placeholder="form_name_ph" placeholder="Votre nom" required>
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="form_phone">Telephone</label>
-                        <input type="tel" name="Telephone" placeholder="0X XX XX XX XX" pattern="0[5-7][0-9]{8}" title="Numero algerien: 05/06/07 + 8 chiffres" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="form_wilaya">Wilaya</label>
-                    <select id="modalWilaya" name="Wilaya" required>
-                        <option value="" disabled selected data-i18n="form_wilaya_ph">Choisir votre wilaya</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="form_qty">Quantite</label>
-                    <select name="Quantite"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5+</option></select>
-                </div>
-                <button type="submit" class="btn-submit" data-i18n="form_confirm">Confirmer la commande</button>
-            </form>
-        </div>
-    </div>
-
     <!-- ══════════ WHATSAPP ══════════ -->
     <a class="wa-fab" id="waFab" href="https://wa.me/213556877546" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp" data-i18n-aria="wa_label">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -973,9 +945,8 @@
                 form_title: "Formulaire de commande", form_subtitle: "Tous les champs sont obligatoires",
                 form_name: "Nom complet", form_name_ph: "Votre nom",
                 form_phone: "Telephone", form_wilaya: "Wilaya", form_wilaya_ph: "Choisir votre wilaya",
-                form_product: "Produit souhaite", form_product_ph: "Choisir le produit",
                 form_qty: "Quantite", form_message: "Message (optionnel)", form_message_ph: "Couleur preferee, question...",
-                form_submit: "Envoyer la commande", form_confirm: "Confirmer la commande",
+                form_submit: "Envoyer la commande",
                 // Footer
                 footer_desc: "Appliques murales modernes et design. Transformez vos espaces avec nos luminaires premium, livres partout en Algerie.",
                 footer_nav: "Navigation", footer_contact: "Contact", footer_location: "Alger, Algerie",
@@ -1031,9 +1002,8 @@
                 form_title: "\u0646\u0645\u0648\u0630\u062c \u0627\u0644\u0637\u0644\u0628", form_subtitle: "\u062c\u0645\u064a\u0639 \u0627\u0644\u062d\u0642\u0648\u0644 \u0645\u0637\u0644\u0648\u0628\u0629",
                 form_name: "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0643\u0627\u0645\u0644", form_name_ph: "\u0627\u0633\u0645\u0643",
                 form_phone: "\u0627\u0644\u0647\u0627\u062a\u0641", form_wilaya: "\u0627\u0644\u0648\u0644\u0627\u064a\u0629", form_wilaya_ph: "\u0627\u062e\u062a\u0631 \u0648\u0644\u0627\u064a\u062a\u0643",
-                form_product: "\u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u0637\u0644\u0648\u0628", form_product_ph: "\u0627\u062e\u062a\u0631 \u0627\u0644\u0645\u0646\u062a\u062c",
                 form_qty: "\u0627\u0644\u0643\u0645\u064a\u0629", form_message: "\u0631\u0633\u0627\u0644\u0629 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)", form_message_ph: "\u0627\u0644\u0644\u0648\u0646 \u0627\u0644\u0645\u0641\u0636\u0644\u060c \u0633\u0624\u0627\u0644...",
-                form_submit: "\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0637\u0644\u0628", form_confirm: "\u062a\u0623\u0643\u064a\u062f \u0627\u0644\u0637\u0644\u0628",
+                form_submit: "\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0637\u0644\u0628",
                 footer_desc: "\u0623\u0628\u0644\u064a\u0643\u0627\u062a \u062c\u062f\u0627\u0631\u064a\u0629 \u0639\u0635\u0631\u064a\u0629 \u0648\u0623\u0646\u064a\u0642\u0629. \u062d\u0648\u0644 \u0645\u0633\u0627\u062d\u0627\u062a\u0643 \u0645\u0639 \u0625\u0636\u0627\u0621\u0627\u062a\u0646\u0627 \u0627\u0644\u0645\u0645\u062a\u0627\u0632\u0629\u060c \u0627\u0644\u062a\u0648\u0635\u064a\u0644 \u0644\u062c\u0645\u064a\u0639 \u0623\u0646\u062d\u0627\u0621 \u0627\u0644\u062c\u0632\u0627\u0626\u0631.",
                 footer_nav: "\u0627\u0644\u062a\u0635\u0641\u062d", footer_contact: "\u0627\u0644\u062a\u0648\u0627\u0635\u0644", footer_location: "\u0627\u0644\u062c\u0632\u0627\u0626\u0631 \u0627\u0644\u0639\u0627\u0635\u0645\u0629",
                 footer_hours: "\u0623\u0648\u0642\u0627\u062a \u0627\u0644\u0639\u0645\u0644", footer_hours_1: "\u0627\u0644\u0633\u0628\u062a - \u0627\u0644\u062e\u0645\u064a\u0633 : 9\u0635 - 6\u0645", footer_hours_2: "\u0627\u0644\u062c\u0645\u0639\u0629 : \u0645\u063a\u0644\u0642",
@@ -1082,9 +1052,8 @@
                 form_title: "Order form", form_subtitle: "All fields are required",
                 form_name: "Full name", form_name_ph: "Your name",
                 form_phone: "Phone", form_wilaya: "Wilaya", form_wilaya_ph: "Choose your wilaya",
-                form_product: "Desired product", form_product_ph: "Choose a product",
                 form_qty: "Quantity", form_message: "Message (optional)", form_message_ph: "Preferred color, question...",
-                form_submit: "Send order", form_confirm: "Confirm order",
+                form_submit: "Send order",
                 footer_desc: "Modern and designer wall sconces. Transform your spaces with our premium lighting, delivered across Algeria.",
                 footer_nav: "Navigation", footer_contact: "Contact", footer_location: "Algiers, Algeria",
                 footer_hours: "Hours", footer_hours_1: "Sat - Thu: 9am - 6pm", footer_hours_2: "Friday: Closed",
@@ -1121,9 +1090,6 @@
         const header = document.getElementById('header');
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-        const modal = document.getElementById('orderModal');
-        const modalClose = document.getElementById('modalClose');
-        const produitSelect = document.getElementById('produit');
         const toast = document.getElementById('toast');
         const langBtns = document.querySelectorAll('.lang-btn');
 
@@ -1152,10 +1118,6 @@
 
         const currentUrl = window.location.href.split('?')[0];
         document.getElementById('formNext').value = currentUrl + '?success=1';
-        document.getElementById('modalFormNext').value = currentUrl + '?success=1';
-
-        // Copy wilayas to modal
-        document.getElementById('modalWilaya').innerHTML = document.getElementById('wilaya').innerHTML;
 
         // ══════════════════════════════════════════
         // i18n ENGINE
@@ -1206,7 +1168,6 @@
             // Re-render products
             const activeFilter = document.querySelector('.filter-tab.active');
             renderProducts(activeFilter ? activeFilter.dataset.filter : 'all');
-            populateProductSelect();
             updateWhatsappLinks();
             renderCart();
         }
@@ -1321,26 +1282,6 @@
 
         function openProduct(product) { /* Task 7 */ }
 
-        function populateProductSelect() {
-            var firstOpt = produitSelect.querySelector('option[data-i18n]');
-            produitSelect.innerHTML = '';
-            var placeholder = document.createElement('option');
-            placeholder.value = '';
-            placeholder.disabled = true;
-            placeholder.selected = true;
-            placeholder.setAttribute('data-i18n', 'form_product_ph');
-            placeholder.textContent = T[currentLang].form_product_ph;
-            produitSelect.appendChild(placeholder);
-
-            products.forEach(function(p) {
-                var name = getProductName(p);
-                var opt = document.createElement('option');
-                opt.value = name + ' (' + p.price + ')';
-                opt.textContent = name + ' - ' + p.price;
-                produitSelect.appendChild(opt);
-            });
-        }
-
         // ══════════════════════════════════════════
         // CART
         // ══════════════════════════════════════════
@@ -1395,6 +1336,8 @@
             document.getElementById('cartFoot').hidden = !lines.length;
             document.getElementById('cartTotal').textContent = ASYCart.formatDA(sum.total);
             document.getElementById('cartNote').hidden = !sum.onRequest;
+
+            renderOrderSummary();
         }
 
         function openCart() {
@@ -1445,6 +1388,65 @@
             if (e.target.closest('[data-close-cart]')) closeCart();
         });
 
+        // ══════════════════════════════════════════
+        // CHECKOUT
+        // ══════════════════════════════════════════
+        var orderForm = document.getElementById('orderForm');
+        var orderSummary = document.getElementById('orderSummary');
+
+        function renderOrderSummary() {
+            var t = T[currentLang];
+            var lines = cartLines();
+            var sum = ASYCart.summarize(lines);
+            orderSummary.innerHTML = lines.length ? lines.map(function(l) {
+                return '<div class="order-summary-line"><img src="' + esc(getProductImg(l.product)) + '" alt="">' +
+                    '<span>' + l.qty + ' &times; ' + esc(getProductName(l.product)) + '</span>' +
+                    '<span class="order-summary-amount">' + esc(lineAmount(l)) + '</span></div>';
+            }).join('') +
+                '<div class="order-summary-total"><span>' + esc(t.cart_total) + ' <small>' + esc(t.cart_excl_delivery) + '</small></span>' +
+                '<strong>' + esc(ASYCart.formatDA(sum.total)) + '</strong></div>' +
+                (sum.onRequest ? '<p class="cart-note">' + esc(t.cart_on_request) + '</p>' : '') +
+                '<button type="button" class="order-summary-edit" data-edit-cart>' + esc(t.cart_edit) + '</button>'
+            : '<div class="order-summary-empty">' + esc(t.cart_empty) + ' <a href="#produits">' + esc(t.cart_browse) + '</a></div>';
+            document.getElementById('orderSubmit').disabled = !lines.length;
+            document.getElementById('orderWhatsapp').disabled = !lines.length;
+        }
+
+        orderSummary.addEventListener('click', function(e) {
+            if (e.target.closest('[data-edit-cart]')) openCart();
+        });
+
+        // E-mail (formsubmit): item list always in French for the shop
+        orderForm.addEventListener('submit', function(e) {
+            var lines = cartLines();
+            if (!lines.length) { e.preventDefault(); return; }
+            var sum = ASYCart.summarize(lines);
+            document.getElementById('orderItems').value = ASYCart.formatLines(lines, function(p) { return getProductName(p, 'fr'); }, T.fr.ref_label);
+            document.getElementById('orderTotal').value = ASYCart.formatDA(sum.total) + ' ' + T.fr.cart_excl_delivery + (sum.onRequest ? ' ' + T.fr.cart_on_request : '');
+        });
+
+        // WhatsApp: same order, in the site language, with the fields already filled in
+        document.getElementById('orderWhatsapp').addEventListener('click', function() {
+            var lines = cartLines();
+            if (!lines.length) return;
+            var t = T[currentLang];
+            var sum = ASYCart.summarize(lines);
+            var parts = [
+                t.wa_order_intro,
+                ASYCart.formatLines(lines, function(p) { return getProductName(p); }, t.ref_label),
+                '',
+                t.cart_total + ' : ' + ASYCart.formatDA(sum.total) + ' (' + t.cart_excl_delivery + ')' + (sum.onRequest ? '\n' + t.cart_on_request : '')
+            ];
+            var fields = [
+                [t.form_name, orderForm.elements.Nom.value],
+                [t.form_phone, orderForm.elements.Telephone.value],
+                [t.form_wilaya, orderForm.elements.Wilaya.value],
+                [t.wa_message, orderForm.elements.Message.value]
+            ].filter(function(f) { return f[1] && f[1].trim(); });
+            if (fields.length) parts.push('', fields.map(function(f) { return f[0] + ' : ' + f[1].trim(); }).join('\n'));
+            window.open(ASYCart.whatsappUrl(WA_PHONE, parts.join('\n')), '_blank', 'noopener');
+        });
+
         // ── Language Switcher ──
         langBtns.forEach(function(btn) {
             btn.addEventListener('click', function() { setLang(btn.dataset.lang); });
@@ -1467,27 +1469,6 @@
                 document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
             });
         });
-
-        // ── Modal ──
-        function openModal(product) {
-            var name = getProductName(product);
-            document.getElementById('modalImg').src = getProductImg(product);
-            document.getElementById('modalImg').alt = name;
-            document.getElementById('modalName').textContent = name;
-            document.getElementById('modalPrice').textContent = product.price;
-            document.getElementById('modalProduit').value = name + ' (' + product.price + ')';
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        modalClose.addEventListener('click', closeModal);
-        modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
         // ── Header ──
         window.addEventListener('scroll', function() { header.classList.toggle('scrolled', window.scrollY > 60); });
