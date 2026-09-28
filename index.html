@@ -1694,7 +1694,9 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        // threshold 0: reveal as soon as the top enters the screen. With 0.1, a section taller than
+        // 10 screens (the product grid on mobile: ~16) never reaches 10% visible and stays transparent.
+        }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
         reveals.forEach(function(el) { observer.observe(el); });
 
         // ── Success ──
