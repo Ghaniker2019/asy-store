@@ -330,7 +330,7 @@
         .order-section { padding: 100px 0; position: relative; }
         .order-section::before {
             content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 600px; height: 600px; background: radial-gradient(circle, rgba(184,144,45,0.04) 0%, transparent 70%);
+            width: 600px; max-width: 100%; height: 600px; background: radial-gradient(circle, rgba(184,144,45,0.04) 0%, transparent 70%);
             pointer-events: none;
         }
         .order-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; position: relative; z-index: 1; }
@@ -620,6 +620,10 @@
             html[dir="rtl"] .wa-fab { right: auto; left: 16px; }
         }
         @media (max-width: 480px) {
+            .header .container { padding: 0 16px; }
+            .logo svg { height: 36px; }
+            .header-right { gap: 8px; }
+            .lang-btn { padding: 5px 9px; }
             .hero { padding-top: 90px; padding-bottom: 32px; }
             .hero-visual { height: 240px; }
             .hero-img-main { max-width: 260px; height: 240px; }
@@ -1299,6 +1303,9 @@
         // ── HTML escape (XSS protection) ──
         function esc(s) { if (!s) return ''; var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
+        // Prices ("12 000 DA") must stay left-to-right inside Arabic text
+        function priceHtml(text) { return '<bdi>' + esc(text) + '</bdi>'; }
+
         // ── Product unique key ──
         function getProductKey(p) { return p._key || String(p.id); }
 
@@ -1324,7 +1331,7 @@
                         '<div class="product-category">' + esc(getCategoryLabel(p.cat)) + '</div>' +
                         '<div class="' + getSpecClass(p.spec) + '">' + getSpecIcon(p.spec) + ' ' + esc(getSpecText(p.spec)) + '</div>' +
                         '<div class="product-footer">' +
-                            '<div class="product-price">' + esc(p.price) + '</div>' +
+                            '<div class="product-price">' + priceHtml(p.price) + '</div>' +
                             '<button class="btn-add" aria-label="' + esc(T[currentLang].btn_add_cart) + '">' +
                                 '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>' +
                                 ' ' + esc(T[currentLang].btn_add_cart) +
@@ -1394,7 +1401,7 @@
                 return '<div class="cart-line">' +
                     '<img src="' + esc(getProductImg(l.product)) + '" alt="">' +
                     '<div><div class="cart-line-name">' + esc(getProductName(l.product)) + '</div>' +
-                        '<div class="cart-line-price">' + esc(lineAmount(l)) + '</div>' +
+                        '<div class="cart-line-price">' + priceHtml(lineAmount(l)) + '</div>' +
                         '<button type="button" class="cart-line-remove" data-remove="' + esc(l.key) + '">' + esc(t.cart_remove) + '</button></div>' +
                     qtyControl(l.key, l.qty) +
                 '</div>';
@@ -1402,7 +1409,7 @@
                 '<a href="#produits" class="btn-secondary" data-close-cart>' + esc(t.cart_browse) + '</a></div>';
 
             document.getElementById('cartFoot').hidden = !lines.length;
-            document.getElementById('cartTotal').textContent = ASYCart.formatDA(sum.total);
+            document.getElementById('cartTotal').innerHTML = priceHtml(ASYCart.formatDA(sum.total));
             document.getElementById('cartNote').hidden = !sum.onRequest;
 
             renderOrderSummary();
@@ -1469,10 +1476,10 @@
             orderSummary.innerHTML = lines.length ? lines.map(function(l) {
                 return '<div class="order-summary-line"><img src="' + esc(getProductImg(l.product)) + '" alt="">' +
                     '<span>' + l.qty + ' &times; ' + esc(getProductName(l.product)) + '</span>' +
-                    '<span class="order-summary-amount">' + esc(lineAmount(l)) + '</span></div>';
+                    '<span class="order-summary-amount">' + priceHtml(lineAmount(l)) + '</span></div>';
             }).join('') +
                 '<div class="order-summary-total"><span>' + esc(t.cart_total) + ' <small>' + esc(t.cart_excl_delivery) + '</small></span>' +
-                '<strong>' + esc(ASYCart.formatDA(sum.total)) + '</strong></div>' +
+                '<strong>' + priceHtml(ASYCart.formatDA(sum.total)) + '</strong></div>' +
                 (sum.onRequest ? '<p class="cart-note">' + esc(t.cart_on_request) + '</p>' : '') +
                 '<button type="button" class="order-summary-edit" data-edit-cart>' + esc(t.cart_edit) + '</button>'
             : '<div class="order-summary-empty">' + esc(t.cart_empty) + ' <a href="#produits">' + esc(t.cart_browse) + '</a></div>';
@@ -1512,7 +1519,10 @@
                 [t.wa_message, orderForm.elements.Message.value]
             ].filter(function(f) { return f[1] && f[1].trim(); });
             if (fields.length) parts.push('', fields.map(function(f) { return f[0] + ' : ' + f[1].trim(); }).join('\n'));
-            window.open(ASYCart.whatsappUrl(WA_PHONE, parts.join('\n')), '_blank', 'noopener');
+            var text = parts.join('\n');
+            // Arabic: isolate amounts so "12 000 DA" is not displayed as "DA 000 12"
+            if (currentLang === 'ar') text = text.replace(/\d[\d ]*DA/g, function(m) { return '\u2066' + m + '\u2069'; });
+            window.open(ASYCart.whatsappUrl(WA_PHONE, text), '_blank', 'noopener');
         });
 
         // ══════════════════════════════════════════
@@ -1539,7 +1549,7 @@
             document.getElementById('pmCat').textContent = getCategoryLabel(p.cat);
             document.getElementById('pmName').textContent = name;
             document.getElementById('pmSpec').innerHTML = p.spec ? '<div class="' + getSpecClass(p.spec) + '">' + getSpecIcon(p.spec) + ' ' + esc(getSpecText(p.spec)) + '</div>' : '';
-            document.getElementById('pmPrice').textContent = p.price;
+            document.getElementById('pmPrice').innerHTML = priceHtml(p.price);
             document.getElementById('pmDesc').textContent = getProductDesc(p);
             document.getElementById('pmImg').alt = name;
             document.getElementById('pmQuestion').href = ASYCart.whatsappUrl(WA_PHONE, t.wa_product_msg + ' ' + name + ref);
