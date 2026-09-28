@@ -93,7 +93,7 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 10, cat: "led", spec: "int", price: "4 200 DA",
+        id: 10, cat: "led", spec: "int", price: "6 900 DA",
         images: ["Products/662235734_964582336531983_6618653074204394511_n.jpg", "Products/666183535_964582429865307_3599050698505953145_n.jpg", "Products/666834022_964582249865325_345763148090551886_n.jpg"],
         name: { fr: "Applique Liseuse Noire", ar: "أبليك قراءة أسود", en: "Black Reading Sconce" },
         desc: {
@@ -147,13 +147,13 @@ var ASY_PRODUCTS = [
         images: ["Products/663242075_964583206531896_7729218085022407988_n.jpg", "Products/662933092_964583036531913_5430809172069410371_n.jpg"],
         name: { fr: "Applique 5 Tubes Noire", ar: "أبليك 5 أنابيب أسود", en: "Black 5-Tube Sconce" },
         desc: {
-            fr: "Une applique à la finition noire composée de cinq tubes de longueurs variées, montés en décalé sur une barre horizontale. Leurs extrémités lumineuses, en haut comme en bas, dessinent une silhouette verticale rythmée qui se détache nettement sur un mur clair. Un choix contemporain pour un salon, une entrée, un couloir ou une cage d'escalier.",
-            ar: "إضاءة جدارية سوداء تتكوّن من خمسة أنابيب بأطوال متنوعة، مثبتة بشكل متدرّج على قاعدة أفقية. أطرافها المضيئة في الأعلى والأسفل ترسم شكلًا عموديًا متناسقًا يبرز بوضوح على الجدران الفاتحة. خيار عصري للصالون أو المدخل أو الممر أو الدرج.",
-            en: "A black-finish sconce made of five tubes of varying lengths, mounted in a staggered arrangement on a horizontal bar. Their glowing tips, top and bottom, trace a rhythmic vertical silhouette that stands out clearly against a light wall. A contemporary choice for a living room, entryway, hallway or staircase."
+            fr: "Une applique à la finition noire composée de cinq tubes de longueurs variées, montés en décalé sur une barre horizontale. Leurs extrémités lumineuses, en haut comme en bas, dessinent une silhouette verticale rythmée qui se détache nettement sur un mur clair. Un choix contemporain pour un salon, une entrée, un couloir ou une cage d'escalier. Elle convient aussi à l'extérieur, pour éclairer une entrée ou une façade.",
+            ar: "إضاءة جدارية سوداء تتكوّن من خمسة أنابيب بأطوال متنوعة، مثبتة بشكل متدرّج على قاعدة أفقية. أطرافها المضيئة في الأعلى والأسفل ترسم شكلًا عموديًا متناسقًا يبرز بوضوح على الجدران الفاتحة. خيار عصري للصالون أو المدخل أو الممر أو الدرج. وتصلح أيضًا للاستعمال الخارجي لإنارة مدخل أو واجهة.",
+            en: "A black-finish sconce made of five tubes of varying lengths, mounted in a staggered arrangement on a horizontal bar. Their glowing tips, top and bottom, trace a rhythmic vertical silhouette that stands out clearly against a light wall. A contemporary choice for a living room, entryway, hallway or staircase. It is also suitable outdoors, to light an entrance or a façade."
         }
     },
     {
-        id: 17, cat: "artistique", spec: "int", price: "5 500 DA",
+        id: 17, cat: "artistique", spec: "int", price: "8 900 DA",
         images: ["Products/663284683_964581506532066_7208053677261643621_n.jpg", "Products/666111635_964581426532074_2743584886324193133_n.jpg"],
         name: { fr: "Applique Main Noire Paume", ar: "أبليك يد سوداء مفتوحة", en: "Black Palm Hand Sconce" },
         desc: {
