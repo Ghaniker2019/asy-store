@@ -51,7 +51,7 @@ ils sont utilisés ; sinon repli sur `imageUrl` et pas de description.
 - Un seul formulaire. Les listes « Produit » et « Quantité » sont remplacées par un
   récapitulatif du panier (lecture seule) + lien « Modifier le panier » (ouvre le panneau).
 - Champs conservés : nom, téléphone, wilaya, message. Téléphone : mobile algérien,
-  espaces acceptés (motif `0[5-7]( ?[0-9]){8}` après nettoyage des espaces multiples).
+  espaces simples acceptés entre les chiffres (motif `0[5-7]( ?[0-9]){8}`, ex. « 05 56 87 75 46 »).
 - Panier vide : récapitulatif « Votre panier est vide » + lien vers les produits ; boutons
   d'envoi désactivés.
 - « Envoyer la commande » (formsubmit, inchangé côté service) : champs cachés
