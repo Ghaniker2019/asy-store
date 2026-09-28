@@ -3,7 +3,7 @@
    Les descriptions ont été rédigées d'après les photos : à faire valider par la boutique. */
 var ASY_PRODUCTS = [
     {
-        id: 1, cat: "classique", spec: "int", price: "4 500 DA",
+        id: 1, cat: "led", spec: "int", price: "4 500 DA",
         images: ["Products/660512119_964583239865226_8198389326246780176_n.jpg"],
         name: { fr: "Applique Anneau LED Noir", ar: "أبليك حلقة LED سوداء", en: "Black LED Ring Sconce" },
         desc: {
@@ -13,7 +13,7 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 2, cat: "classique", spec: "int", price: "4 200 DA",
+        id: 2, cat: "led", spec: "int", price: "4 200 DA",
         images: ["Products/661454881_964582986531918_5483709476643133918_n.jpg"],
         name: { fr: "Applique Panneau LED à Bandeau", ar: "أبليك لوح LED بشريط", en: "Banded LED Panel Sconce" },
         desc: {
@@ -23,7 +23,7 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 3, cat: "classique", spec: "int", price: "4 500 DA",
+        id: 3, cat: "led", spec: "int", price: "4 500 DA",
         images: ["Products/661710772_964583469865203_6823182422207281289_n.jpg"],
         name: { fr: "Applique Ovale LED Noire", ar: "أبليك LED بيضاوي أسود", en: "Black Oval LED Sconce" },
         desc: {
@@ -33,7 +33,7 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 4, cat: "classique", spec: "int", price: "5 000 DA",
+        id: 4, cat: "led", spec: "int", price: "5 000 DA",
         images: ["Products/661715173_964583323198551_6902706529067766289_n.jpg"],
         name: { fr: "Applique Tube LED Noire", ar: "أبليك أنبوب LED أسود", en: "Black LED Tube Sconce" },
         desc: {
@@ -94,7 +94,7 @@ var ASY_PRODUCTS = [
     },
     {
         id: 10, cat: "led", spec: "int", price: "4 200 DA",
-        images: ["Products/662235734_964582336531983_6618653074204394511_n.jpg"],
+        images: ["Products/662235734_964582336531983_6618653074204394511_n.jpg", "Products/666183535_964582429865307_3599050698505953145_n.jpg", "Products/666834022_964582249865325_345763148090551886_n.jpg"],
         name: { fr: "Applique Liseuse Noire", ar: "أبليك قراءة أسود", en: "Black Reading Sconce" },
         desc: {
             fr: "Une applique de chevet noir mat qui réunit deux éclairages : en haut, un disque lumineux diffuse une lumière chaude et enveloppante ; en bas, un spot de lecture cylindrique incliné concentre la lumière là où l'on en a besoin. Deux petits interrupteurs sont intégrés à la platine. Idéale en tête de lit dans une chambre, ou pour un coin lecture dans le salon.",
@@ -103,7 +103,7 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 11, cat: "classique", spec: "int", price: "4 000 DA",
+        id: 11, cat: "led", spec: "int", price: "4 000 DA",
         images: ["Products/662355147_964583289865221_8593786777519565021_n.jpg"],
         name: { fr: "Applique Anneau LED Doré", ar: "أبليك حلقة LED ذهبية", en: "Gold LED Ring Sconce" },
         desc: {
@@ -113,7 +113,7 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 12, cat: "decorative", spec: "int", price: "6 500 DA", badge: "premium",
+        id: 12, cat: "artistique", spec: "int", price: "6 500 DA", badge: "premium",
         images: ["Products/662375647_964581536532063_4214740935727736516_n.jpg"],
         name: { fr: "Applique Main Dorée Paume", ar: "أبليك يد ذهبية مفتوحة", en: "Golden Palm Hand Sconce" },
         desc: {
@@ -123,7 +123,7 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 13, cat: "classique", spec: "int", price: "3 500 DA",
+        id: 13, cat: "led", spec: "int", price: "3 500 DA",
         images: ["Products/662877554_964582669865283_8855418817131032716_n.jpg"],
         name: { fr: "Applique Sablier Haut-Bas", ar: "أبليك ساعة رملية بإضاءة مزدوجة", en: "Up & Down Hourglass Sconce" },
         desc: {
@@ -133,18 +133,8 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 14, cat: "led", spec: "int", price: "3 800 DA",
-        images: ["Products/662933092_964583036531913_5430809172069410371_n.jpg"],
-        name: { fr: "Applique 5 Tubes Or & Noir", ar: "أبليك 5 أنابيب ذهبي وأسود", en: "Gold & Black 5-Tube Sconce" },
-        desc: {
-            fr: "Cinq tubes noirs de longueurs différentes, montés en décalé sur une barre horizontale, chacun terminé à ses deux extrémités par un embout lumineux. L'ensemble forme une composition graphique ponctuée de points de lumière blanche, avec un léger halo sur le mur. Sur la photo, la version noire est présentée à côté de sa déclinaison dorée ; elle convient à un salon, une entrée ou un couloir au style contemporain.",
-            ar: "خمسة أنابيب سوداء بأطوال متفاوتة، مثبتة بشكل متدرّج على قاعدة أفقية، ولكل أنبوب طرفان مضيئان. تشكّل معًا تكوينًا هندسيًا لافتًا تتخلله نقاط من الضوء الأبيض، مع هالة خفيفة على الجدار. تظهر النسخة السوداء في الصورة إلى جانب نسختها الذهبية، وتناسب الصالون أو المدخل أو الممر ذا الطابع العصري.",
-            en: "Five black tubes of different lengths, set in a staggered arrangement on a horizontal bar, each finished with a glowing tip at both ends. Together they create a graphic composition dotted with points of white light and a soft halo on the wall. The photo shows the black version next to its gold counterpart; it suits a contemporary living room, entryway or hallway."
-        }
-    },
-    {
         id: 15, cat: "led", spec: "int", price: "4 000 DA",
-        images: ["Products/663072230_964583076531909_5454792028482091568_n.jpg"],
+        images: ["Products/663072230_964583076531909_5454792028482091568_n.jpg", "Products/662933092_964583036531913_5430809172069410371_n.jpg"],
         name: { fr: "Applique 5 Tubes Dorée", ar: "أبليك 5 أنابيب ذهبي", en: "Gold 5-Tube Sconce" },
         desc: {
             fr: "Cinq tubes à la finition dorée, de hauteurs différentes, fixés en décalé sur une barre horizontale assortie. Chaque tube s'illumine à ses deux extrémités, ce qui crée un jeu de points lumineux vers le haut et vers le bas et un halo doux sur le mur. Une applique élégante et graphique pour un salon, une entrée ou le long d'un couloir.",
@@ -154,7 +144,7 @@ var ASY_PRODUCTS = [
     },
     {
         id: 16, cat: "led", spec: "both", price: "3 600 DA",
-        images: ["Products/663242075_964583206531896_7729218085022407988_n.jpg"],
+        images: ["Products/663242075_964583206531896_7729218085022407988_n.jpg", "Products/662933092_964583036531913_5430809172069410371_n.jpg"],
         name: { fr: "Applique 5 Tubes Noire", ar: "أبليك 5 أنابيب أسود", en: "Black 5-Tube Sconce" },
         desc: {
             fr: "Une applique à la finition noire composée de cinq tubes de longueurs variées, montés en décalé sur une barre horizontale. Leurs extrémités lumineuses, en haut comme en bas, dessinent une silhouette verticale rythmée qui se détache nettement sur un mur clair. Un choix contemporain pour un salon, une entrée, un couloir ou une cage d'escalier.",
@@ -164,7 +154,7 @@ var ASY_PRODUCTS = [
     },
     {
         id: 17, cat: "artistique", spec: "int", price: "5 500 DA",
-        images: ["Products/663284683_964581506532066_7208053677261643621_n.jpg"],
+        images: ["Products/663284683_964581506532066_7208053677261643621_n.jpg", "Products/666111635_964581426532074_2743584886324193133_n.jpg"],
         name: { fr: "Applique Main Noire Paume", ar: "أبليك يد سوداء مفتوحة", en: "Black Palm Hand Sconce" },
         desc: {
             fr: "Une main sculptée à la finition noire mate, doigts délicatement ouverts, qui tient un globe blanc laiteux. Le contraste entre le noir profond et la douceur du globe donne à cette applique un caractère artistique affirmé. Elle apporte une touche originale à une entrée, un salon, un couloir ou une chambre.",
@@ -203,26 +193,6 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 21, cat: "led", spec: "int", price: "4 800 DA",
-        images: ["Products/666111635_964581426532074_2743584886324193133_n.jpg"],
-        name: { fr: "Applique Main Noire Levée", ar: "أبليك يد سوداء مرفوعة", en: "Raised Black Hand Sconce" },
-        desc: {
-            fr: "Une main sculptée à la finition noire mate sort du mur et soutient délicatement un globe blanc opalin. Allumé, le globe diffuse une lumière douce et enveloppante, tandis que la silhouette de la main apporte une touche artistique singulière. Une belle façon de donner du caractère à un salon, une entrée ou un couloir.",
-            ar: "يدٌ منحوتة بلون أسود غير لامع تمتدّ من الجدار لتحمل برفقٍ كرةً بيضاء حليبية. عند الإضاءة تنشر الكرة نورًا ناعمًا يغمر المكان، فيما يضفي شكل اليد لمسة فنية لافتة. خيار جميل لإضفاء طابع شخصي على الصالون أو المدخل أو الرواق.",
-            en: "A sculpted hand in a matte black finish reaches out from the wall, gently holding an opal white globe. When lit, the globe gives off a soft, enveloping glow, while the silhouette of the hand adds a distinctive artistic touch. A lovely way to bring character to a living room, entryway or hallway."
-        }
-    },
-    {
-        id: 22, cat: "artistique", spec: "int", price: "4 200 DA",
-        images: ["Products/666183535_964582429865307_3599050698505953145_n.jpg"],
-        name: { fr: "Applique Liseuse Noire Lumière Blanche", ar: "أبليك قراءة أسود بضوء أبيض", en: "Black Reading Sconce, White Light" },
-        desc: {
-            fr: "Applique au design contemporain à finition noire : une platine verticale porte en partie haute un disque lumineux qui diffuse une lumière blanche vers le haut et vers le bas du mur, et plus bas un bras cylindrique terminé par un petit spot de lecture. Deux interrupteurs sont intégrés directement à la platine. Parfaite en tête de lit dans une chambre, ou près d'un fauteuil de lecture au salon.",
-            ar: "مصباح جداري بتصميم عصري ولون أسود: لوحة عمودية تحمل في أعلاها قرصًا مضيئًا ينشر ضوءًا أبيض نحو أعلى الجدار وأسفله، وفي أسفلها ذراعٌ أسطوانية تنتهي ببقعة ضوء صغيرة مخصّصة للقراءة. وقد زُوّدت اللوحة بمفتاحَي تشغيل مدمجين. مناسب جدًا بجانب السرير في غرفة النوم، أو قرب كرسي القراءة في الصالون.",
-            en: "A contemporary wall light in a black finish: a slim vertical plate holds a glowing disc at the top that casts white light up and down the wall, and below it a cylindrical arm ending in a small reading spot. Two switches are built right into the plate. Ideal at the head of the bed in a bedroom, or beside a reading chair in the living room."
-        }
-    },
-    {
         id: 23, cat: "classique", spec: "int", price: "4 500 DA",
         images: ["Products/666489794_964573399866210_8420417276701669506_n.jpg"],
         name: { fr: "Applique Éclairage Tableau Or", ar: "أبليك إضاءة لوحة ذهبي", en: "Gold Picture Light Sconce" },
@@ -233,7 +203,7 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 24, cat: "led", spec: "int", price: "5 200 DA", badge: "new",
+        id: 24, cat: "decorative", spec: "int", price: "5 200 DA", badge: "new",
         images: ["Products/666526631_964580673198816_6688133335723400980_n.jpg"],
         name: { fr: "Applique Torsade à Bulles Or", ar: "أبليك ملتوٍ بفقاعات ذهبي", en: "Gold Bubble Twist Sconce" },
         desc: {
@@ -243,7 +213,7 @@ var ASY_PRODUCTS = [
         }
     },
     {
-        id: 25, cat: "decorative", spec: "int", price: "6 200 DA", badge: "premium",
+        id: 25, cat: "artistique", spec: "int", price: "6 200 DA", badge: "premium",
         images: ["Products/666624621_964581953198688_5833031665386046773_n.jpg"],
         name: { fr: "Applique Deux Mains Dorées", ar: "أبليك يدان ذهبيتان", en: "Two Golden Hands Sconce" },
         desc: {
@@ -260,16 +230,6 @@ var ASY_PRODUCTS = [
             fr: "Un panneau transparent finement gravé, traversé en son centre par une barre à finition dorée, projette sur le mur des faisceaux de lumière chaude vers le haut et vers le bas, qui dessinent de véritables motifs géométriques. La photo présente trois découpes : pointes en zigzag, vagues et ovale arrondi. À l'intérieur, elle anime un salon, un couloir ou une cage d'escalier ; à l'extérieur, elle met en valeur une entrée ou une façade.",
             ar: "لوحة شفافة بنقوش دقيقة يتوسّطها قضيبٌ ذهبي اللون، ترسم على الجدار حزمًا من الضوء الدافئ نحو الأعلى والأسفل على شكل زخارف هندسية لافتة. تعرض الصورة ثلاثة تصاميم: حوافّ متعرّجة، وتموّجات، وشكل بيضاوي. في الداخل تبعث الحيوية في الصالون أو الرواق أو الدرج، وفي الخارج تُبرز المدخل أو واجهة المنزل.",
             en: "A finely etched clear panel, crossed at its centre by a bar in a golden finish, casts beams of warm light up and down the wall, drawing striking geometric patterns. The photo shows three cut-out shapes: zigzag points, waves and a rounded oval. Indoors it brings a living room, hallway or stairwell to life; outdoors it highlights an entrance or façade."
-        }
-    },
-    {
-        id: 27, cat: "decorative", spec: "int", price: "3 800 DA",
-        images: ["Products/666834022_964582249865325_345763148090551886_n.jpg"],
-        name: { fr: "Applique Liseuse Noire Lumière Chaude", ar: "أبليك قراءة أسود بضوء دافئ", en: "Black Reading Sconce, Warm Light" },
-        desc: {
-            fr: "Applique de lecture à la finition noire : une platine verticale surmontée d'un disque lumineux à la lueur chaude et dorée, complétée par un bras cylindrique qui se termine par un petit spot. Deux interrupteurs discrets sont intégrés à la platine. Une ambiance douce et cosy, idéale en tête de lit dans une chambre ou à côté d'un canapé pour lire au salon.",
-            ar: "مصباح جداري للقراءة باللون الأسود: لوحة عمودية يعلوها قرص مضيء بضوء دافئ يميل إلى الذهبي، وتكمّلها ذراع أسطوانية تنتهي ببقعة ضوء صغيرة. وقد دُمج في اللوحة مفتاحا تشغيل بشكل أنيق. يمنح أجواءً هادئة ودافئة، وهو مثالي بجانب السرير في غرفة النوم أو قرب الأريكة للقراءة في الصالون.",
-            en: "A reading wall light in a black finish: a vertical plate topped with a glowing disc that gives off a warm, golden light, paired with a cylindrical arm ending in a small spotlight. Two discreet switches are built into the plate. It creates a soft, cosy mood, perfect at the head of the bed or beside the sofa for reading in the living room."
         }
     },
     {
