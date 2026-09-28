@@ -24,7 +24,10 @@ commande pour un seul produit. Pas de panier, pas de fiche produit, pas de conta
   `price`, `images` (tableau, une photo aujourd'hui), `name` et `desc` en `fr`/`ar`/`en`.
   Remplace le tableau `defaultProducts` et l'objet `productNames` d'`index.html`.
   Expose une seule variable globale `ASY_PRODUCTS`.
-- **`index.html`** : HTML, CSS et logique (panier, fiche, WhatsApp), dans le style du code
+- **`cart.js` (nouveau)** : logique du panier sans DOM (prix, totaux, quantités, stockage,
+  texte de commande, lien WhatsApp). Exposé en `window.ASYCart` dans le navigateur et en
+  module Node pour les tests (`_tests/cart.test.js`, lancés avec `node --test`).
+- **`index.html`** : HTML, CSS et affichage (panier, fiche, WhatsApp), dans le style du code
   existant (IIFE, `var`/`function`, `esc()` pour tout texte injecté).
 - **`admin.html`, `firebase-init.js`** : non modifiés.
 
