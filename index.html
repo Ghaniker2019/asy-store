@@ -391,6 +391,26 @@
         .order-summary-edit { background: none; border: none; color: var(--blue); font-family: var(--font-body); font-size: 0.8rem; cursor: pointer; padding: 8px 0 0; text-decoration: underline; }
         .order-summary-empty { font-size: 0.85rem; color: var(--text-muted); padding: 8px 0; }
         .order-summary-empty a { color: var(--blue); }
+        .order-summary-row { display: flex; justify-content: space-between; align-items: baseline; padding-top: 10px; font-size: 0.85rem; color: var(--text-secondary); }
+        .order-summary-row small { color: var(--text-muted); font-size: 0.72rem; }
+
+        .form-row[hidden] { display: none; }
+        .delivery-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .delivery-modes .delivery-mode {
+            position: relative; display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 12px 14px;
+            border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-deep);
+            color: var(--text-primary); cursor: pointer; transition: var(--transition);
+        }
+        .delivery-mode input { position: absolute; opacity: 0; pointer-events: none; }
+        .delivery-mode:has(input:checked) { border-color: var(--blue); background: rgba(67,162,226,0.06); box-shadow: 0 0 0 1px var(--blue); }
+        .delivery-mode:has(input:focus-visible) { box-shadow: 0 0 0 3px rgba(67,162,226,0.3); }
+        .delivery-mode:has(input:disabled) { opacity: 0.45; cursor: not-allowed; }
+        .delivery-mode-name { font-size: 0.85rem; font-weight: 600; }
+        .delivery-mode-fee { font-size: 0.9rem; font-weight: 600; color: var(--gold); min-height: 1.2em; }
+        .delivery-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+        .delivery-note:empty { display: none; }
+        .delivery-note.warn { color: #c0392b; font-weight: 500; }
+        .delivery-note a { color: var(--blue); }
 
         /* ── ABOUT ── */
         .about { padding: 80px 0; border-top: 1px solid var(--border); }
@@ -715,7 +735,7 @@
             </div>
             <div class="trust-item">
                 <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-                <h4 data-i18n="trust_delivery_title">Livraison 69 wilayas</h4>
+                <h4 data-i18n="trust_delivery_title">Livraison 67 wilayas</h4>
                 <p data-i18n="trust_delivery_desc">Partout en Algerie, a domicile</p>
             </div>
             <div class="trust-item">
@@ -801,7 +821,7 @@
                     <ul class="order-features">
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat1">Reponse sous 24h maximum</span></li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat2">Paiement a la livraison uniquement</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat3">Livraison vers les 69 wilayas</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat3">Livraison vers les 67 wilayas</span></li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="order_feat4">Emballage soigne et securise</span></li>
                     </ul>
                 </div>
@@ -815,6 +835,8 @@
                         <input type="hidden" name="_next" id="formNext">
                         <input type="text" name="_honey" style="display:none">
                         <input type="hidden" name="Commande" id="orderItems">
+                        <input type="hidden" name="Sous-total" id="orderSubtotal">
+                        <input type="hidden" name="Livraison" id="orderDelivery">
                         <input type="hidden" name="Total" id="orderTotal">
                         <div class="form-group">
                             <label data-i18n="order_summary">Votre commande</label>
@@ -836,6 +858,37 @@
                                 <option value="" disabled selected data-i18n="form_wilaya_ph">Choisir votre wilaya</option>
                                 <option value="01 - Adrar">01 - Adrar</option><option value="02 - Chlef">02 - Chlef</option><option value="03 - Laghouat">03 - Laghouat</option><option value="04 - Oum El Bouaghi">04 - Oum El Bouaghi</option><option value="05 - Batna">05 - Batna</option><option value="06 - Bejaia">06 - Bejaia</option><option value="07 - Biskra">07 - Biskra</option><option value="08 - Bechar">08 - Bechar</option><option value="09 - Blida">09 - Blida</option><option value="10 - Bouira">10 - Bouira</option><option value="11 - Tamanrasset">11 - Tamanrasset</option><option value="12 - Tebessa">12 - Tebessa</option><option value="13 - Tlemcen">13 - Tlemcen</option><option value="14 - Tiaret">14 - Tiaret</option><option value="15 - Tizi Ouzou">15 - Tizi Ouzou</option><option value="16 - Alger">16 - Alger</option><option value="17 - Djelfa">17 - Djelfa</option><option value="18 - Jijel">18 - Jijel</option><option value="19 - Setif">19 - Setif</option><option value="20 - Saida">20 - Saida</option><option value="21 - Skikda">21 - Skikda</option><option value="22 - Sidi Bel Abbes">22 - Sidi Bel Abbes</option><option value="23 - Annaba">23 - Annaba</option><option value="24 - Guelma">24 - Guelma</option><option value="25 - Constantine">25 - Constantine</option><option value="26 - Medea">26 - Medea</option><option value="27 - Mostaganem">27 - Mostaganem</option><option value="28 - M'Sila">28 - M'Sila</option><option value="29 - Mascara">29 - Mascara</option><option value="30 - Ouargla">30 - Ouargla</option><option value="31 - Oran">31 - Oran</option><option value="32 - El Bayadh">32 - El Bayadh</option><option value="33 - Illizi">33 - Illizi</option><option value="34 - Bordj Bou Arreridj">34 - Bordj Bou Arreridj</option><option value="35 - Boumerdes">35 - Boumerdes</option><option value="36 - El Tarf">36 - El Tarf</option><option value="37 - Tindouf">37 - Tindouf</option><option value="38 - Tissemsilt">38 - Tissemsilt</option><option value="39 - El Oued">39 - El Oued</option><option value="40 - Khenchela">40 - Khenchela</option><option value="41 - Souk Ahras">41 - Souk Ahras</option><option value="42 - Tipaza">42 - Tipaza</option><option value="43 - Mila">43 - Mila</option><option value="44 - Ain Defla">44 - Ain Defla</option><option value="45 - Naama">45 - Naama</option><option value="46 - Ain Temouchent">46 - Ain Temouchent</option><option value="47 - Ghardaia">47 - Ghardaia</option><option value="48 - Relizane">48 - Relizane</option><option value="49 - Timimoun">49 - Timimoun</option><option value="50 - Bordj Badji Mokhtar">50 - Bordj Badji Mokhtar</option><option value="51 - Ouled Djellal">51 - Ouled Djellal</option><option value="52 - Beni Abbes">52 - Beni Abbes</option><option value="53 - In Salah">53 - In Salah</option><option value="54 - In Guezzam">54 - In Guezzam</option><option value="55 - Touggourt">55 - Touggourt</option><option value="56 - Djanet">56 - Djanet</option><option value="57 - El M'Ghair">57 - El M'Ghair</option><option value="58 - El Meniaa">58 - El Meniaa</option><option value="59 - Aflou">59 - Aflou</option><option value="60 - Barika">60 - Barika</option><option value="61 - Ksar Chellala">61 - Ksar Chellala</option><option value="62 - Messaad">62 - Messaad</option><option value="63 - Ain Oussera">63 - Ain Oussera</option><option value="64 - Boussaada">64 - Boussaada</option><option value="65 - El Abiodh Sidi Cheikh">65 - El Abiodh Sidi Cheikh</option><option value="66 - El Kantara">66 - El Kantara</option><option value="67 - Bir El Ater">67 - Bir El Ater</option><option value="68 - Ksar El Boukhari">68 - Ksar El Boukhari</option><option value="69 - El Aricha">69 - El Aricha</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="delivery_mode">Mode de livraison</label>
+                            <div class="delivery-modes">
+                                <label class="delivery-mode">
+                                    <input type="radio" name="Mode de livraison" value="Domicile" data-mode="domicile" required disabled>
+                                    <span class="delivery-mode-name" data-i18n="delivery_home">À domicile</span>
+                                    <span class="delivery-mode-fee" id="feeDomicile"></span>
+                                </label>
+                                <label class="delivery-mode">
+                                    <input type="radio" name="Mode de livraison" value="Stop desk" data-mode="stopdesk" required disabled>
+                                    <span class="delivery-mode-name" data-i18n="delivery_desk">Stop desk (bureau)</span>
+                                    <span class="delivery-mode-fee" id="feeStopdesk"></span>
+                                </label>
+                            </div>
+                            <p class="delivery-note" id="deliveryNote"></p>
+                        </div>
+                        <div class="form-row" id="homeFields" hidden>
+                            <div class="form-group">
+                                <label for="commune" data-i18n="form_commune">Commune</label>
+                                <select id="commune" name="Commune" required disabled></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="adresse" data-i18n="form_address">Adresse</label>
+                                <input type="text" id="adresse" name="Adresse" data-i18n-placeholder="form_address_ph" placeholder="Quartier, rue, numéro…" required disabled>
+                            </div>
+                        </div>
+                        <div class="form-group" id="deskFields" hidden>
+                            <label for="bureau" data-i18n="form_bureau">Bureau stop desk</label>
+                            <select id="bureau" name="Bureau" required disabled></select>
+                            <p class="delivery-note" id="bureauInfo"></p>
                         </div>
                         <div class="form-group">
                             <label for="message" data-i18n="form_message">Message (optionnel)</label>
@@ -919,6 +972,7 @@
                 <strong id="cartTotal">0 DA</strong>
             </div>
             <p class="cart-note" id="cartNote" data-i18n="cart_on_request" hidden>+ articles au prix sur demande</p>
+            <p class="cart-note" data-i18n="cart_delivery_note">Livraison calculée selon votre wilaya lors de la commande.</p>
             <button type="button" class="btn-submit" id="cartCheckout" data-i18n="cart_checkout">Valider la commande</button>
         </div>
     </aside>
@@ -973,6 +1027,8 @@
     <script src="firebase-init.js"></script>
     <script src="products.js"></script>
     <script src="cart.js"></script>
+    <script src="delivery-data.js"></script>
+    <script src="delivery.js"></script>
 
     <!-- ══════════ JAVASCRIPT ══════════ -->
     <script>
@@ -993,7 +1049,7 @@
                 hero_cta: "Voir la collection", hero_cta2: "Commander", hero_stat: "Modeles disponibles",
                 // Trust
                 trust_install_title: "Installation facile", trust_install_desc: "Instructions incluses avec chaque applique",
-                trust_delivery_title: "Livraison 69 wilayas", trust_delivery_desc: "Partout en Algerie, a domicile",
+                trust_delivery_title: "Livraison 67 wilayas", trust_delivery_desc: "Partout en Algerie, a domicile",
                 trust_quality_title: "Qualite garantie", trust_quality_desc: "Produits testes et verifies",
                 trust_payment_title: "Paiement a la livraison", trust_payment_desc: "Payez cash a la reception",
                 // Categories
@@ -1013,7 +1069,7 @@
                 order_label: "Commande", order_title_1: "Passez votre ", order_title_2: "commande", order_title_3: " en toute simplicite",
                 order_desc: "Remplissez le formulaire ci-contre et nous vous contacterons dans les plus brefs delais pour confirmer votre commande et organiser la livraison.",
                 order_feat1: "Reponse sous 24h maximum", order_feat2: "Paiement a la livraison uniquement",
-                order_feat3: "Livraison vers les 69 wilayas", order_feat4: "Emballage soigne et securise",
+                order_feat3: "Livraison vers les 67 wilayas", order_feat4: "Emballage soigne et securise",
                 // Form
                 form_title: "Formulaire de commande", form_subtitle: "Tous les champs sont obligatoires",
                 form_name: "Nom complet", form_name_ph: "Votre nom",
@@ -1046,7 +1102,8 @@
                 // WhatsApp
                 wa_label: "Écrire sur WhatsApp", wa_greeting: "Bonjour ASY Store, j'ai une question.",
                 wa_product_question: "Une question sur ce produit ?", wa_product_msg: "Bonjour ASY Store, j'ai une question sur ce produit :",
-                wa_order_intro: "Bonjour ASY Store, je souhaite commander :", wa_message: "Message"
+                wa_order_intro: "Bonjour ASY Store, je souhaite commander :", wa_message: "Message",
+                delivery_mode: "Mode de livraison", delivery_home: "À domicile", delivery_desk: "Stop desk (bureau)", delivery_home_short: "domicile", delivery_desk_short: "stop desk", delivery_choose_wilaya: "Choisissez d'abord votre wilaya.", delivery_unavailable: "Livraison non disponible dans cette wilaya : contactez-nous sur WhatsApp.", delivery_map: "Voir sur la carte", form_commune: "Commune", form_commune_ph: "Choisir votre commune", form_address: "Adresse", form_address_ph: "Quartier, rue, numéro…", form_bureau: "Bureau stop desk", form_bureau_ph: "Choisir un bureau", order_subtotal: "Sous-total", order_delivery: "Livraison", order_delivery_tbd: "selon la wilaya", order_total_pay: "Total à payer", cart_delivery_note: "Livraison calculée selon votre wilaya lors de la commande."
             },
             ar: {
                 nav_collection: "\u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629", nav_products: "\u0627\u0644\u0645\u0646\u062a\u062c\u0627\u062a", nav_about: "\u0645\u0646 \u0646\u062d\u0646", nav_order: "\u0627\u0637\u0644\u0628 \u0627\u0644\u0622\u0646",
@@ -1055,7 +1112,7 @@
                 hero_subtitle: "\u0623\u0628\u0644\u064a\u0643\u0627\u062a \u062c\u062f\u0627\u0631\u064a\u0629 \u0628\u062a\u0635\u0645\u064a\u0645 \u0641\u0631\u064a\u062f \u0644\u062a\u062d\u0648\u064a\u0644 \u0643\u0644 \u062c\u062f\u0627\u0631 \u0625\u0644\u0649 \u062a\u062d\u0641\u0629 \u0636\u0648\u0626\u064a\u0629. \u0627\u0644\u062a\u0648\u0635\u064a\u0644 \u0644\u062c\u0645\u064a\u0639 \u0623\u0646\u062d\u0627\u0621 \u0627\u0644\u062c\u0632\u0627\u0626\u0631.",
                 hero_cta: "\u0634\u0627\u0647\u062f \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629", hero_cta2: "\u0627\u0637\u0644\u0628 \u0627\u0644\u0622\u0646", hero_stat: "\u0645\u0648\u062f\u064a\u0644 \u0645\u062a\u0648\u0641\u0631",
                 trust_install_title: "\u062a\u0631\u0643\u064a\u0628 \u0633\u0647\u0644", trust_install_desc: "\u062a\u0639\u0644\u064a\u0645\u0627\u062a \u0645\u0631\u0641\u0642\u0629 \u0645\u0639 \u0643\u0644 \u0645\u0646\u062a\u062c",
-                trust_delivery_title: "\u062a\u0648\u0635\u064a\u0644 \u0644\u0640 69 \u0648\u0644\u0627\u064a\u0629", trust_delivery_desc: "\u0625\u0644\u0649 \u062c\u0645\u064a\u0639 \u0623\u0646\u062d\u0627\u0621 \u0627\u0644\u062c\u0632\u0627\u0626\u0631",
+                trust_delivery_title: "\u062a\u0648\u0635\u064a\u0644 \u0644\u0640 67 \u0648\u0644\u0627\u064a\u0629", trust_delivery_desc: "\u0625\u0644\u0649 \u062c\u0645\u064a\u0639 \u0623\u0646\u062d\u0627\u0621 \u0627\u0644\u062c\u0632\u0627\u0626\u0631",
                 trust_quality_title: "\u062c\u0648\u062f\u0629 \u0645\u0636\u0645\u0648\u0646\u0629", trust_quality_desc: "\u0645\u0646\u062a\u062c\u0627\u062a \u0645\u062e\u062a\u0628\u0631\u0629 \u0648\u0645\u0648\u062b\u0648\u0642\u0629",
                 trust_payment_title: "\u0627\u0644\u062f\u0641\u0639 \u0639\u0646\u062f \u0627\u0644\u0627\u0633\u062a\u0644\u0627\u0645", trust_payment_desc: "\u0627\u062f\u0641\u0639 \u0646\u0642\u062f\u0627\u064b \u0639\u0646\u062f \u0627\u0644\u062a\u0648\u0635\u064a\u0644",
                 cat_label: "\u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629", cat_title_1: "\u0627\u0633\u062a\u0643\u0634\u0641 ", cat_title_2: "\u0641\u0626\u0627\u062a\u0646\u0627",
@@ -1071,7 +1128,7 @@
                 order_label: "\u0627\u0644\u0637\u0644\u0628", order_title_1: "\u0642\u062f\u0645 ", order_title_2: "\u0637\u0644\u0628\u0643", order_title_3: " \u0628\u0643\u0644 \u0633\u0647\u0648\u0644\u0629",
                 order_desc: "\u0627\u0645\u0644\u0623 \u0627\u0644\u0646\u0645\u0648\u0630\u062c \u0648\u0633\u0646\u062a\u0635\u0644 \u0628\u0643 \u0641\u064a \u0623\u0642\u0631\u0628 \u0648\u0642\u062a \u0644\u062a\u0623\u0643\u064a\u062f \u0637\u0644\u0628\u0643 \u0648\u062a\u0646\u0638\u064a\u0645 \u0627\u0644\u062a\u0648\u0635\u064a\u0644.",
                 order_feat1: "\u0631\u062f \u062e\u0644\u0627\u0644 24 \u0633\u0627\u0639\u0629 \u0643\u062d\u062f \u0623\u0642\u0635\u0649", order_feat2: "\u0627\u0644\u062f\u0641\u0639 \u0639\u0646\u062f \u0627\u0644\u0627\u0633\u062a\u0644\u0627\u0645 \u0641\u0642\u0637",
-                order_feat3: "\u0627\u0644\u062a\u0648\u0635\u064a\u0644 \u0644\u0640 69 \u0648\u0644\u0627\u064a\u0629", order_feat4: "\u062a\u063a\u0644\u064a\u0641 \u0645\u062d\u0643\u0645 \u0648\u0622\u0645\u0646",
+                order_feat3: "\u0627\u0644\u062a\u0648\u0635\u064a\u0644 \u0644\u0640 67 \u0648\u0644\u0627\u064a\u0629", order_feat4: "\u062a\u063a\u0644\u064a\u0641 \u0645\u062d\u0643\u0645 \u0648\u0622\u0645\u0646",
                 form_title: "\u0646\u0645\u0648\u0630\u062c \u0627\u0644\u0637\u0644\u0628", form_subtitle: "\u062c\u0645\u064a\u0639 \u0627\u0644\u062d\u0642\u0648\u0644 \u0645\u0637\u0644\u0648\u0628\u0629",
                 form_name: "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0643\u0627\u0645\u0644", form_name_ph: "\u0627\u0633\u0645\u0643",
                 form_phone: "\u0627\u0644\u0647\u0627\u062a\u0641", form_wilaya: "\u0627\u0644\u0648\u0644\u0627\u064a\u0629", form_wilaya_ph: "\u0627\u062e\u062a\u0631 \u0648\u0644\u0627\u064a\u062a\u0643",
@@ -1096,7 +1153,8 @@
                 ref_label: "\u0645\u0631\u062c\u0639", order_summary: "\u0637\u0644\u0628\u0643", order_via_whatsapp: "\u0627\u0637\u0644\u0628 \u0639\u0628\u0631 \u0648\u0627\u062a\u0633\u0627\u0628",
                 wa_label: "\u0631\u0627\u0633\u0644\u0646\u0627 \u0639\u0644\u0649 \u0648\u0627\u062a\u0633\u0627\u0628", wa_greeting: "\u0645\u0631\u062d\u0628\u0627\u064b ASY Store\u060c \u0644\u062f\u064a \u0633\u0624\u0627\u0644.",
                 wa_product_question: "\u0633\u0624\u0627\u0644 \u062d\u0648\u0644 \u0647\u0630\u0627 \u0627\u0644\u0645\u0646\u062a\u062c\u061f", wa_product_msg: "\u0645\u0631\u062d\u0628\u0627\u064b ASY Store\u060c \u0644\u062f\u064a \u0633\u0624\u0627\u0644 \u062d\u0648\u0644 \u0647\u0630\u0627 \u0627\u0644\u0645\u0646\u062a\u062c:",
-                wa_order_intro: "\u0645\u0631\u062d\u0628\u0627\u064b ASY Store\u060c \u0623\u0631\u063a\u0628 \u0641\u064a \u0637\u0644\u0628:", wa_message: "\u0631\u0633\u0627\u0644\u0629"
+                wa_order_intro: "\u0645\u0631\u062d\u0628\u0627\u064b ASY Store\u060c \u0623\u0631\u063a\u0628 \u0641\u064a \u0637\u0644\u0628:", wa_message: "\u0631\u0633\u0627\u0644\u0629",
+                delivery_mode: "طريقة التوصيل", delivery_home: "إلى المنزل", delivery_desk: "مكتب التوصيل (Stop desk)", delivery_home_short: "إلى المنزل", delivery_desk_short: "مكتب التوصيل", delivery_choose_wilaya: "اختر ولايتك أولاً.", delivery_unavailable: "التوصيل غير متوفر في هذه الولاية: تواصل معنا عبر واتساب.", delivery_map: "عرض على الخريطة", form_commune: "البلدية", form_commune_ph: "اختر بلديتك", form_address: "العنوان", form_address_ph: "الحي، الشارع، الرقم…", form_bureau: "مكتب الاستلام", form_bureau_ph: "اختر مكتبًا", order_subtotal: "المجموع الفرعي", order_delivery: "التوصيل", order_delivery_tbd: "حسب الولاية", order_total_pay: "المجموع للدفع", cart_delivery_note: "تُحسب تكلفة التوصيل حسب ولايتك عند الطلب."
             },
             en: {
                 nav_collection: "Collection", nav_products: "Products", nav_about: "About", nav_order: "Order Now",
@@ -1105,7 +1163,7 @@
                 hero_subtitle: "Unique designer wall sconces to transform every wall into a luminous work of art. Delivery across all of Algeria.",
                 hero_cta: "View collection", hero_cta2: "Order now", hero_stat: "Models available",
                 trust_install_title: "Easy installation", trust_install_desc: "Instructions included with each sconce",
-                trust_delivery_title: "Delivery to 69 wilayas", trust_delivery_desc: "Across all of Algeria, to your door",
+                trust_delivery_title: "Delivery to 67 wilayas", trust_delivery_desc: "Across all of Algeria, to your door",
                 trust_quality_title: "Guaranteed quality", trust_quality_desc: "Tested and verified products",
                 trust_payment_title: "Cash on delivery", trust_payment_desc: "Pay when you receive your order",
                 cat_label: "Collection", cat_title_1: "Explore our ", cat_title_2: "categories",
@@ -1121,7 +1179,7 @@
                 order_label: "Order", order_title_1: "Place your ", order_title_2: "order", order_title_3: " with ease",
                 order_desc: "Fill out the form and we'll contact you as soon as possible to confirm your order and arrange delivery.",
                 order_feat1: "Response within 24 hours", order_feat2: "Cash on delivery only",
-                order_feat3: "Delivery to all 69 wilayas", order_feat4: "Careful and secure packaging",
+                order_feat3: "Delivery to all 67 wilayas", order_feat4: "Careful and secure packaging",
                 form_title: "Order form", form_subtitle: "All fields are required",
                 form_name: "Full name", form_name_ph: "Your name",
                 form_phone: "Phone", form_wilaya: "Wilaya", form_wilaya_ph: "Choose your wilaya",
@@ -1146,7 +1204,8 @@
                 ref_label: "ref.", order_summary: "Your order", order_via_whatsapp: "Order via WhatsApp",
                 wa_label: "Chat on WhatsApp", wa_greeting: "Hello ASY Store, I have a question.",
                 wa_product_question: "A question about this product?", wa_product_msg: "Hello ASY Store, I have a question about this product:",
-                wa_order_intro: "Hello ASY Store, I would like to order:", wa_message: "Message"
+                wa_order_intro: "Hello ASY Store, I would like to order:", wa_message: "Message",
+                delivery_mode: "Delivery method", delivery_home: "Home delivery", delivery_desk: "Stop desk (pickup office)", delivery_home_short: "home", delivery_desk_short: "stop desk", delivery_choose_wilaya: "Choose your wilaya first.", delivery_unavailable: "Delivery is not available in this wilaya: contact us on WhatsApp.", delivery_map: "View on map", form_commune: "Municipality", form_commune_ph: "Choose your municipality", form_address: "Address", form_address_ph: "District, street, number…", form_bureau: "Pickup office", form_bureau_ph: "Choose an office", order_subtotal: "Subtotal", order_delivery: "Delivery", order_delivery_tbd: "depends on wilaya", order_total_pay: "Total to pay", cart_delivery_note: "Delivery is calculated for your wilaya when you order."
             }
         };
 
@@ -1246,6 +1305,7 @@
             renderProducts(activeFilter ? activeFilter.dataset.filter : 'all');
             updateWhatsappLinks();
             renderCart();
+            renderDelivery();
             if (pm.product) fillProductModal();
         }
 
@@ -1487,22 +1547,93 @@
         // ══════════════════════════════════════════
         var orderForm = document.getElementById('orderForm');
         var orderSummary = document.getElementById('orderSummary');
+        var wilayaSelect = document.getElementById('wilaya');
+        var communeSelect = document.getElementById('commune');
+        var adresseInput = document.getElementById('adresse');
+        var bureauSelect = document.getElementById('bureau');
+        var modeInputs = orderForm.querySelectorAll('input[data-mode]');
+
+        // Chosen wilaya (E-com data), delivery mode and its price
+        function currentDelivery() {
+            var w = ASYDelivery.forWilaya(ASY_DELIVERY, wilayaSelect.value);
+            var checked = orderForm.querySelector('input[data-mode]:checked:not(:disabled)');
+            var mode = checked ? checked.getAttribute('data-mode') : null;
+            return { w: w, mode: mode, fee: w && mode ? w[mode] : null };
+        }
+
+        // Short label for the summary, the e-mail and WhatsApp ("domicile" / "stop desk")
+        function modeLabel(mode, lang) {
+            var t = T[lang || currentLang];
+            return mode === 'domicile' ? t.delivery_home_short : t.delivery_desk_short;
+        }
+
+        function bureauValue(b) { return b.code + ' - ' + b.nom; }
+
+        // Rebuild a select, keeping the current choice when it is still available
+        function fillSelect(select, options, placeholder) {
+            var keep = select.value;
+            select.innerHTML = '<option value="" disabled>' + esc(placeholder) + '</option>' + options.map(function(o) {
+                return '<option value="' + esc(o[0]) + '">' + esc(o[1]) + '</option>';
+            }).join('');
+            select.value = options.some(function(o) { return o[0] === keep; }) ? keep : '';
+        }
+
+        function renderDelivery() {
+            var t = T[currentLang];
+            var w = ASYDelivery.forWilaya(ASY_DELIVERY, wilayaSelect.value);
+            modeInputs.forEach(function(input) {
+                var mode = input.getAttribute('data-mode');
+                var fee = w ? w[mode] : null;
+                input.disabled = fee === null;
+                if (input.disabled) input.checked = false;
+                document.getElementById(mode === 'domicile' ? 'feeDomicile' : 'feeStopdesk').innerHTML = fee === null ? '' : priceHtml(ASYCart.formatDA(fee));
+            });
+            var d = currentDelivery();
+            fillSelect(communeSelect, w ? w.communes.map(function(c) { return [c, c]; }) : [], t.form_commune_ph);
+            fillSelect(bureauSelect, w ? w.bureaux.map(function(b) { return [bureauValue(b), b.nom + ' (' + b.commune + ')']; }) : [], t.form_bureau_ph);
+
+            // Hidden fields are disabled: neither validated nor sent
+            var home = d.mode === 'domicile', desk = d.mode === 'stopdesk';
+            document.getElementById('homeFields').hidden = !home;
+            communeSelect.disabled = adresseInput.disabled = !home;
+            document.getElementById('deskFields').hidden = !desk;
+            bureauSelect.disabled = !desk;
+
+            var b = desk && w.bureaux.find(function(x) { return bureauValue(x) === bureauSelect.value; });
+            document.getElementById('bureauInfo').innerHTML = b ? esc(b.adresse) +
+                (b.maps ? ' · <a href="' + esc(b.maps) + '" target="_blank" rel="noopener">' + esc(t.delivery_map) + '</a>' : '') : '';
+
+            var note = document.getElementById('deliveryNote');
+            note.className = 'delivery-note' + (w && !w.served ? ' warn' : '');
+            note.textContent = !w ? t.delivery_choose_wilaya : (w.served ? '' : t.delivery_unavailable);
+            renderOrderSummary();
+        }
+
+        wilayaSelect.addEventListener('change', renderDelivery);
+        bureauSelect.addEventListener('change', renderDelivery);
+        modeInputs.forEach(function(input) { input.addEventListener('change', renderDelivery); });
 
         function renderOrderSummary() {
             var t = T[currentLang];
             var lines = cartLines();
             var sum = ASYCart.summarize(lines);
+            var d = currentDelivery();
+            var known = d.fee !== null;
             orderSummary.innerHTML = lines.length ? lines.map(function(l) {
                 return '<div class="order-summary-line"><img src="' + esc(getProductImg(l.product)) + '" alt="">' +
                     '<span>' + l.qty + ' &times; ' + esc(getProductName(l.product)) + '</span>' +
                     '<span class="order-summary-amount">' + priceHtml(lineAmount(l)) + '</span></div>';
             }).join('') +
-                '<div class="order-summary-total"><span>' + esc(t.cart_total) + ' <small>' + esc(t.cart_excl_delivery) + '</small></span>' +
-                '<strong>' + priceHtml(ASYCart.formatDA(sum.total)) + '</strong></div>' +
+                '<div class="order-summary-row"><span>' + esc(t.order_subtotal) + '</span><span>' + priceHtml(ASYCart.formatDA(sum.total)) + '</span></div>' +
+                '<div class="order-summary-row"><span>' + esc(t.order_delivery) + (known ? ' <small>(' + esc(modeLabel(d.mode)) + ')</small>' : '') + '</span>' +
+                    '<span>' + (known ? priceHtml(ASYCart.formatDA(d.fee)) : '<small>' + esc(t.order_delivery_tbd) + '</small>') + '</span></div>' +
+                '<div class="order-summary-total"><span>' + (known ? esc(t.order_total_pay) : esc(t.cart_total) + ' <small>' + esc(t.cart_excl_delivery) + '</small>') + '</span>' +
+                '<strong>' + priceHtml(ASYCart.formatDA(sum.total + (known ? d.fee : 0))) + '</strong></div>' +
                 (sum.onRequest ? '<p class="cart-note">' + esc(t.cart_on_request) + '</p>' : '') +
                 '<button type="button" class="order-summary-edit" data-edit-cart>' + esc(t.cart_edit) + '</button>'
             : '<div class="order-summary-empty">' + esc(t.cart_empty) + ' <a href="#produits">' + esc(t.cart_browse) + '</a></div>';
-            document.getElementById('orderSubmit').disabled = !lines.length;
+            // Not served: no e-mail order, WhatsApp stays available to talk about it
+            document.getElementById('orderSubmit').disabled = !lines.length || !!(d.w && !d.w.served);
             document.getElementById('orderWhatsapp').disabled = !lines.length;
         }
 
@@ -1516,9 +1647,14 @@
             if (!lines.length) { e.preventDefault(); return; }
             // No #hash here: formsubmit appends ?success=1, which must stay in the query string
             document.getElementById('formNext').value = window.location.href.split(/[?#]/)[0] + '?success=1';
+            var d = currentDelivery();
+            if (d.fee === null) { e.preventDefault(); return; }
             var sum = ASYCart.summarize(lines);
+            var onRequest = sum.onRequest ? ' ' + T.fr.cart_on_request : '';
             document.getElementById('orderItems').value = ASYCart.formatLines(lines, function(p) { return getProductName(p, 'fr'); }, T.fr.ref_label);
-            document.getElementById('orderTotal').value = ASYCart.formatDA(sum.total) + ' ' + T.fr.cart_excl_delivery + (sum.onRequest ? ' ' + T.fr.cart_on_request : '');
+            document.getElementById('orderSubtotal').value = ASYCart.formatDA(sum.total) + onRequest;
+            document.getElementById('orderDelivery').value = ASYCart.formatDA(d.fee) + ' (' + modeLabel(d.mode, 'fr') + ')';
+            document.getElementById('orderTotal').value = ASYCart.formatDA(sum.total + d.fee) + onRequest;
         });
 
         // WhatsApp: same order, in the site language, with the fields already filled in
@@ -1527,16 +1663,26 @@
             if (!lines.length) return;
             var t = T[currentLang];
             var sum = ASYCart.summarize(lines);
+            var d = currentDelivery();
+            var totals = d.fee !== null
+                ? t.order_subtotal + ' : ' + ASYCart.formatDA(sum.total) + '\n' +
+                  t.order_delivery + ' (' + modeLabel(d.mode) + ') : ' + ASYCart.formatDA(d.fee) + '\n' +
+                  t.order_total_pay + ' : ' + ASYCart.formatDA(sum.total + d.fee)
+                : t.cart_total + ' : ' + ASYCart.formatDA(sum.total) + ' (' + t.cart_excl_delivery + ')';
             var parts = [
                 t.wa_order_intro,
                 ASYCart.formatLines(lines, function(p) { return getProductName(p); }, t.ref_label),
                 '',
-                t.cart_total + ' : ' + ASYCart.formatDA(sum.total) + ' (' + t.cart_excl_delivery + ')' + (sum.onRequest ? '\n' + t.cart_on_request : '')
+                totals + (sum.onRequest ? '\n' + t.cart_on_request : '')
             ];
             var fields = [
                 [t.form_name, orderForm.elements.Nom.value],
                 [t.form_phone, orderForm.elements.Telephone.value],
-                [t.form_wilaya, orderForm.elements.Wilaya.value],
+                [t.form_wilaya, wilayaSelect.value],
+                [t.delivery_mode, d.mode ? modeLabel(d.mode) : ''],
+                [t.form_commune, communeSelect.disabled ? '' : communeSelect.value],
+                [t.form_address, adresseInput.disabled ? '' : adresseInput.value],
+                [t.form_bureau, bureauSelect.disabled ? '' : bureauSelect.value],
                 [t.wa_message, orderForm.elements.Message.value]
             ].filter(function(f) { return f[1] && f[1].trim(); });
             if (fields.length) parts.push('', fields.map(function(f) { return f[0] + ' : ' + f[1].trim(); }).join('\n'));
